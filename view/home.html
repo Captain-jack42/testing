@@ -1,0 +1,796 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Yatra - Your Journey Partner</title>
+    <link rel="stylesheet" href="/css/home.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <header class="header">
+        <nav class="navbar">
+            <div class="logo">
+                <h1><i class="fas fa-map"></i> Yatra <i class="fas fa-plane"></i></h1> 
+            </div>
+            <ul class="nav-links">
+                <li><a href="/">Home</a></li>
+                <li><a href="/destinations">Destinations</a></li>
+                <li><a href="/packages">Packages</a></li>
+                <li><a href="/services">Services</a></li>
+                <li><a href="/contact">Contact</a></li>
+                <li id="authButtons">
+                    <a href="/login" class="login-btn" onmouseover="this.style.color='white'" onmouseout="this.style.color='var(--primary-color)'">Login</a>
+                    <a href="/signup" class="signup-btn" onmouseover="this.style.color='white'" onmouseout="this.style.color='white'">Sign Up</a>
+                </li>
+                <li id="userProfile" style="display: none;">
+                    <div class="user-profile">
+                        <span id="userName">User</span>
+                        <button onclick="logout()" class="logout-btn">Logout</button>
+                    </div>
+                </li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section class="hero">
+            <div class="hero-content">
+                <video autoplay muted loop class="hero-video" style="
+                    position: absolute;
+                    top: 0;
+                    left: 0;
+                    width: 100%;
+                    height: 100%;
+                    object-fit: cover;
+                    z-index: 1;
+                    filter: brightness(0.7);
+                ">
+                    <source src="/css/videos/video2.mp4" type="video/mp4">
+                </video>
+                <div class="hero-video-overlay" style="
+                    position: absolute;
+                    top: 0;
+                    left: 0;
+                    width: 100%;
+                    height: 100%;
+                    background: linear-gradient(to bottom, rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.5));
+                    z-index: 2;
+                "></div>
+                <div style="
+                    position: relative;
+                    z-index: 3;
+                    text-align: center;
+                    color: white;
+                    width: 100%;
+                ">
+                    <h1>Discover Your Next Adventure</h1>
+                    <p>Plan your perfect journey with personalized travel experiences</p>
+                    <form id="searchForm" class="search-box">
+                        <input type="text" id="searchInput" placeholder="Where do you want to go?" required>
+                        <button type="submit" class="search-btn">Search</button>
+                    </form>
+                </div>
+            </div>
+        </section>
+
+        <section id="searchResults" class="search-results" style="display: none;">
+            <div class="search-results-container">
+                <h2>Search Results</h2>
+                <div id="resultsGrid" class="results-grid">
+                    <!-- Results will be dynamically inserted here -->
+                </div>
+                <div id="loadingSpinner" class="loading-spinner" style="display: none;">
+                    <i class="fas fa-spinner fa-spin"></i>
+                    <p>Searching for amazing destinations...</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="features">
+            <h2>Why Choose Yatra?</h2>
+            <div class="feature-cards">
+                <a href="/destinations" style="text-decoration: none; color: rgb(21, 20, 20);">
+                <div class="feature-card">
+                    <i class="fas fa-map-marked-alt"></i>
+                    <h3>Best Destinations</h3>
+                    <p>Handpicked locations for unforgettable experiences</p>
+                </div>
+                </a>
+                <div class="feature-card">
+                    <i class="fas fa-coins"></i>
+                    <h3>Best Prices</h3>
+                    <p>Competitive rates and exclusive travel deals</p>
+                </div>
+                
+                <div class="feature-card">
+                    <i class="fas fa-headset"></i>
+                    <h3>24/7 Support</h3>
+                    <p>Round-the-clock assistance for your journey</p>
+                </div>
+                
+            </div>
+        </section>
+
+        <section class="popular-destinations">
+            <h2>Popular Destinations</h2>
+            <div class="destination-cards">
+                <div class="destination-card">
+                    <img src="/css/images/goa.jpg" alt="Goa">
+                    <div class="card-content">
+                        <h3>Goa</h3>
+                        <p>Beach Paradise</p>
+                        <div class="navigation-options">
+                            <a href="https://www.google.com/maps/dir//Goa" target="_blank" class="nav-btn directions-btn">
+                                <i class="fas fa-directions"></i>
+                                Get Directions
+                            </a>
+                            <button class="nav-btn travel-info-btn" data-location="goa">
+                                <i class="fas fa-info-circle"></i>
+                                Travel Info
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <div class="destination-card">
+                    <img src="css/images/himalayan.jpg" alt="Himalayas">
+                    <div class="card-content">
+                        <h3>Himalayas</h3>
+                        <p>Mountain Adventure</p>
+                        <div class="navigation-options">
+                            <a href="https://www.google.com/maps/dir//Himalayas" target="_blank" class="nav-btn directions-btn">
+                                <i class="fas fa-directions"></i>
+                                Get Directions
+                            </a>
+                            <button class="nav-btn travel-info-btn" data-location="himalayas">
+                                <i class="fas fa-info-circle"></i>
+                                Travel Info
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <div class="destination-card">
+                    <img src="css/images/rajasthan.jpg" alt="Rajasthan">
+                    <div class="card-content">
+                        <h3>Rajasthan</h3>
+                        <p>Royal Heritage</p>
+                        <div class="navigation-options">
+                            <a href="https://www.google.com/maps/dir//Rajasthan" target="_blank" class="nav-btn directions-btn">
+                                <i class="fas fa-directions"></i>
+                                Get Directions
+                            </a>
+                            <button class="nav-btn travel-info-btn" data-location="rajasthan">
+                                <i class="fas fa-info-circle"></i>
+                                Travel Info
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="services">
+            <h2>Our Services</h2>
+            <div class="service-cards">
+                <a href="/Hotel-Booking" style="text-decoration: none; color: rgb(21, 20, 20);">
+                <div class="service-card">
+                    <i class="fas fa-hotel"></i>
+                    <h3>Hotel Booking</h3>
+                </div>
+                </a>
+
+                <a href="/Flight-Booking" style="text-decoration: none; color: rgb(21, 20, 20);">
+                <div class="service-card">
+                    <i class="fas fa-plane"></i>
+                    <h3>Flight Booking</h3>
+                </div>
+                </a>
+
+                 <a href="/Car-Rentel" style="text-decoration: none; color: rgb(21, 20, 20);">
+                <div class="service-card">
+                    <i class="fas fa-car"></i>
+                    <h3>Car Rental</h3>
+                </div>
+                </a>
+
+                <a href="/Tour-Packages" style="text-decoration: none; color: rgb(21, 20, 20);">
+                <div class="service-card">
+                    <i class="fas fa-map"></i>
+                    <h3>Tour Packages</h3>
+                </div>
+                </a>
+
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>About Yatra</h3>
+                <p>Your trusted partner for memorable travel experiences across India.</p>
+            </div>
+            <div class="footer-section">
+                <h3>Quick Links</h3>
+                <ul>
+                    <li><a href="/about">About Us</a></li>
+                    <li><a href="/terms">Terms & Conditions</a></li>
+                    <li><a href="/privacy">Privacy Policy</a></li>
+                    <li><a href="/faq">FAQs</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>Contact Us</h3>
+                <p>Email: info@yatra.com</p>
+                <p>Phone: +91 1234567890</p>
+            </div>
+            <div class="footer-section">
+                <h3>Follow Us</h3>
+                <div class="social-links">
+                    <a href="#"><i class="fab fa-facebook"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-linkedin"></i></a>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2024 Yatra. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!-- Travel Info Modal -->
+    <div id="travelInfoModal" class="travel-info-modal">
+        <div class="modal-content">
+            <button class="close-modal">&times;</button>
+            <div class="travel-info-content">
+                <h3>Travel Information</h3>
+                <div class="travel-info-list">
+                    <!-- Content will be dynamically inserted here -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- AI Travel Assistant Chatbot -->
+    <div class="chat-widget">
+        <button id="chatToggle" class="chat-toggle">
+            <i class="fas fa-comments"></i>
+            <span>Travel Assistant</span>
+        </button>
+        <div id="chatbox" class="chatbox">
+            <div class="chat-header">
+                <div class="chat-title">
+                    <i class="fas fa-robot"></i>
+                    <span>Yatra AI Assistant</span>
+                </div>
+                <button id="minimizeChat" class="minimize-chat">
+                    <i class="fas fa-minus"></i>
+                </button>
+            </div>
+            <div id="chatMessages" class="chat-messages">
+                <div class="message bot-message">
+                    <i class="fas fa-robot bot-icon"></i>
+                    <div class="message-content">
+                        Hello! I'm your Yatra travel assistant. I can help you with:
+                        <ul class="quick-options">
+                            <li><button onclick="askBot('plan a trip')">Plan a Trip</button></li>
+                            <li><button onclick="askBot('find accommodations')">Find Accommodations</button></li>
+                            <li><button onclick="askBot('transportation options')">Transportation Options</button></li>
+                            <li><button onclick="askBot('local attractions')">Local Attractions</button></li>
+                            <li><button onclick="askBot('travel tips')">Travel Tips</button></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="chat-input">
+                <input type="text" id="userInput" placeholder="Type your question here...">
+                <button id="sendMessage">
+                    <i class="fas fa-paper-plane"></i>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.getElementById('searchForm').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const searchInput = document.getElementById('searchInput').value.trim();
+            const resultsSection = document.getElementById('searchResults');
+            const resultsGrid = document.getElementById('resultsGrid');
+            const loadingSpinner = document.getElementById('loadingSpinner');
+
+            if (!searchInput) {
+                alert('Please enter a destination to search');
+                return;
+            }
+
+            // Show loading spinner
+            resultsSection.style.display = 'block';
+            resultsGrid.innerHTML = '';
+            loadingSpinner.style.display = 'flex';
+
+            try {
+                const response = await fetch(`/search?query=${encodeURIComponent(searchInput)}`);
+                const data = await response.json();
+
+                // Hide loading spinner
+                loadingSpinner.style.display = 'none';
+
+                if (data.results && data.results.length > 0) {
+                    // Scroll to results section
+                    resultsSection.scrollIntoView({ behavior: 'smooth' });
+
+                    data.results.forEach(result => {
+                        const resultCard = document.createElement('div');
+                        resultCard.className = 'result-card';
+                        
+                        // Add type-specific class for styling
+                        if (result.type) {
+                            resultCard.classList.add(`result-type-${result.type}`);
+                        }
+
+                        resultCard.innerHTML = `
+                            <div class="result-image">
+                                <img src="${result.images[0]}" alt="${result.title}" 
+                                    onerror="this.onerror=null; this.src='https://source.unsplash.com/featured/800x600/?${encodeURIComponent(result.title + ' travel')}'"
+                                    loading="lazy">
+                                ${result.type ? `<span class="result-type-badge">${result.type}</span>` : ''}
+                                ${result.images.length > 1 ? `
+                                    <div class="image-navigation">
+                                        <button class="prev-image" aria-label="Previous image">
+                                            <i class="fas fa-chevron-left"></i>
+                                        </button>
+                                        <button class="next-image" aria-label="Next image">
+                                            <i class="fas fa-chevron-right"></i>
+                                        </button>
+                                    </div>
+                                    <div class="image-dots">
+                                        ${result.images.map((_, index) => `
+                                            <span class="image-dot ${index === 0 ? 'active' : ''}" data-index="${index}"></span>
+                                        `).join('')}
+                                    </div>
+                                ` : ''}
+                            </div>
+                            <div class="result-content">
+                                <h3>${result.title}</h3>
+                                <p class="short-description">${result.shortDescription}</p>
+                                <div class="result-details" style="display: none;">
+                                    <p class="full-description">${result.fullDescription}</p>
+                                    ${result.coordinates ? `
+                                        <div class="location-info">
+                                            <i class="fas fa-map-marker-alt"></i>
+                                            <span>Location: ${result.coordinates.lat}, ${result.coordinates.lon}</span>
+                                        </div>
+                                    ` : ''}
+                                </div>
+                                <div class="result-actions">
+                                    <button class="toggle-details-btn">Show More</button>
+                                    <a href="${result.url}" target="_blank" class="learn-more-btn">
+                                        <i class="fas fa-external-link-alt"></i>
+                                        Learn More
+                                    </a>
+                                </div>
+                                <div class="navigation-options">
+                                    <a href="https://www.google.com/maps/dir/Current+Location/${encodeURIComponent(result.title)}" 
+                                       target="_blank" 
+                                       class="nav-btn directions-btn">
+                                        <i class="fas fa-directions"></i>
+                                        Get Directions
+                                    </a>
+                                    <button class="nav-btn travel-info-btn" data-location="${result.title.toLowerCase()}">
+                                        <i class="fas fa-info-circle"></i>
+                                        Travel Info
+                                    </button>
+                                </div>
+                            </div>
+                        `;
+
+                        // Add toggle functionality for details
+                        const toggleBtn = resultCard.querySelector('.toggle-details-btn');
+                        const details = resultCard.querySelector('.result-details');
+                        
+                        toggleBtn.addEventListener('click', () => {
+                            const isHidden = details.style.display === 'none';
+                            details.style.display = isHidden ? 'block' : 'none';
+                            toggleBtn.textContent = isHidden ? 'Show Less' : 'Show More';
+                        });
+
+                        // Add image navigation functionality if there are multiple images
+                        if (result.images.length > 1) {
+                            const img = resultCard.querySelector('img');
+                            const prevBtn = resultCard.querySelector('.prev-image');
+                            const nextBtn = resultCard.querySelector('.next-image');
+                            const dots = resultCard.querySelectorAll('.image-dot');
+                            let currentImageIndex = 0;
+
+                            const updateImage = (index) => {
+                                currentImageIndex = index;
+                                const newImage = result.images[index];
+                                img.src = newImage;
+                                img.onerror = () => {
+                                    img.onerror = null;
+                                    img.src = `https://source.unsplash.com/featured/800x600/?${encodeURIComponent(result.title + ' travel')}`;
+                                };
+                                dots.forEach((dot, i) => {
+                                    dot.classList.toggle('active', i === index);
+                                });
+                                prevBtn.style.opacity = index === 0 ? '0.5' : '1';
+                                nextBtn.style.opacity = index === result.images.length - 1 ? '0.5' : '1';
+                            };
+
+                            prevBtn.addEventListener('click', (e) => {
+                                e.preventDefault();
+                                if (currentImageIndex > 0) {
+                                    updateImage(currentImageIndex - 1);
+                                }
+                            });
+
+                            nextBtn.addEventListener('click', (e) => {
+                                e.preventDefault();
+                                if (currentImageIndex < result.images.length - 1) {
+                                    updateImage(currentImageIndex + 1);
+                                }
+                            });
+
+                            dots.forEach((dot, index) => {
+                                dot.addEventListener('click', () => {
+                                    updateImage(index);
+                                });
+                            });
+
+                            // Initialize button states
+                            prevBtn.style.opacity = '0.5';
+                            nextBtn.style.opacity = result.images.length > 1 ? '1' : '0.5';
+                        }
+
+                        // Add travel info functionality
+                        const travelInfoBtn = resultCard.querySelector('.travel-info-btn');
+                        if (travelInfoBtn) {
+                            travelInfoBtn.addEventListener('click', () => {
+                                const location = result.title.toLowerCase();
+                                let info = travelInfo[location];
+                                
+                                // If no predefined info exists, create generic info based on result data
+                                if (!info) {
+                                    info = [
+                                        { 
+                                            icon: 'fa-map-marker-alt', 
+                                            title: 'Location', 
+                                            text: `Located in ${result.shortDescription}`
+                                        },
+                                        { 
+                                            icon: 'fa-route', 
+                                            title: 'Getting There', 
+                                            text: result.coordinates ? 
+                                                `Located at coordinates: ${result.coordinates.lat}, ${result.coordinates.lon}. Use GPS navigation for precise directions.` : 
+                                                'Use the directions button above for detailed navigation instructions.'
+                                        },
+                                        { 
+                                            icon: 'fa-clock', 
+                                            title: 'Best Time to Visit', 
+                                            text: 'Morning hours are recommended for the best experience and photography.'
+                                        },
+                                        { 
+                                            icon: 'fa-info-circle', 
+                                            title: 'Travel Tips', 
+                                            text: 'Carry water, wear comfortable shoes, and check local weather conditions before visiting.'
+                                        }
+                                    ];
+                                }
+                                
+                                // Update modal content
+                                travelInfoList.innerHTML = info.map(item => `
+                                    <li>
+                                        <i class="fas ${item.icon}"></i>
+                                        <div class="info-text">
+                                            <h4>${item.title}</h4>
+                                            <p>${item.text}</p>
+                                        </div>
+                                    </li>
+                                `).join('');
+
+                                // Show modal
+                                modal.style.display = 'flex';
+                            });
+                        }
+
+                        resultsGrid.appendChild(resultCard);
+
+                        // Add hover effect animation
+                        resultCard.addEventListener('mouseenter', () => {
+                            resultCard.style.transform = 'translateY(-10px)';
+                            resultCard.style.transition = 'transform 0.3s ease';
+                        });
+                        resultCard.addEventListener('mouseleave', () => {
+                            resultCard.style.transform = 'translateY(0)';
+                        });
+                    });
+                } else {
+                    resultsGrid.innerHTML = `
+                        <div class="no-results">
+                            <i class="fas fa-search" style="font-size: 3rem; color: var(--primary-color); margin-bottom: 1rem;"></i>
+                            <p>No monuments or attractions found for "${searchInput}". Try another search term.</p>
+                        </div>
+                    `;
+                }
+            } catch (error) {
+                console.error('Search error:', error);
+                loadingSpinner.style.display = 'none';
+                resultsGrid.innerHTML = `
+                    <div class="error-message">
+                        <i class="fas fa-exclamation-circle" style="font-size: 3rem; color: #dc2626; margin-bottom: 1rem;"></i>
+                        <p>An error occurred while searching. Please try again.</p>
+                    </div>
+                `;
+            }
+        });
+
+        // Add input validation
+        document.getElementById('searchInput').addEventListener('input', (e) => {
+            const input = e.target;
+            const submitBtn = input.form.querySelector('button[type="submit"]');
+            submitBtn.disabled = !input.value.trim();
+        });
+
+        // Travel Info Modal Functionality
+        const travelInfo = {
+            goa: [
+                { icon: 'fa-plane', title: 'Getting There', text: 'Dabolim Airport (GOI) is the main gateway. Regular flights from major Indian cities.' },
+                { icon: 'fa-bed', title: 'Accommodation', text: 'Wide range from luxury resorts to beach huts. Best areas: Calangute, Baga, and Panjim.' },
+                { icon: 'fa-sun', title: 'Best Time to Visit', text: 'November to February offers perfect weather. Avoid monsoon (June-September).' },
+                { icon: 'fa-info-circle', title: 'Travel Tips', text: 'Rent a scooter for easy transportation. Carry cash for local shops and beach shacks.' }
+            ],
+            himalayas: [
+                { icon: 'fa-plane', title: 'Getting There', text: 'Major airports: Dehradun, Kullu-Manali. Train connections to base cities available.' },
+                { icon: 'fa-bed', title: 'Accommodation', text: 'Mountain resorts, homestays, and camping options available. Book in advance during peak season.' },
+                { icon: 'fa-sun', title: 'Best Time to Visit', text: 'March-May for spring views, September-November for clear skies and moderate weather.' },
+                { icon: 'fa-info-circle', title: 'Travel Tips', text: 'Acclimatize properly. Carry warm clothes and basic medical supplies.' }
+            ],
+            rajasthan: [
+                { icon: 'fa-plane', title: 'Getting There', text: 'Major airports in Jaipur, Udaipur, and Jodhpur. Excellent rail connectivity.' },
+                { icon: 'fa-bed', title: 'Accommodation', text: 'Heritage hotels, palace stays, and desert camps. Wide range of options available.' },
+                { icon: 'fa-sun', title: 'Best Time to Visit', text: 'October to March is ideal. Avoid summer months (April-June).' },
+                { icon: 'fa-info-circle', title: 'Travel Tips', text: 'Respect local customs. Carry light cotton clothes and sunscreen.' }
+            ]
+        };
+
+        const modal = document.getElementById('travelInfoModal');
+        const travelInfoBtns = document.querySelectorAll('.travel-info-btn');
+        const closeModal = document.querySelector('.close-modal');
+        const travelInfoList = document.querySelector('.travel-info-list');
+
+        travelInfoBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                const location = btn.dataset.location;
+                const info = travelInfo[location];
+                
+                // Update modal content
+                travelInfoList.innerHTML = info.map(item => `
+                    <li>
+                        <i class="fas ${item.icon}"></i>
+                        <div class="info-text">
+                            <h4>${item.title}</h4>
+                            <p>${item.text}</p>
+                        </div>
+                    </li>
+                `).join('');
+
+                // Show modal
+                modal.style.display = 'flex';
+            });
+        });
+
+        closeModal.addEventListener('click', () => {
+            modal.style.display = 'none';
+        });
+
+        window.addEventListener('click', (e) => {
+            if (e.target === modal) {
+                modal.style.display = 'none';
+            }
+        });
+
+        // Chatbot Functionality
+        const chatToggle = document.getElementById('chatToggle');
+        const chatbox = document.getElementById('chatbox');
+        const minimizeChat = document.getElementById('minimizeChat');
+        const chatMessages = document.getElementById('chatMessages');
+        const userInput = document.getElementById('userInput');
+        const sendMessage = document.getElementById('sendMessage');
+
+        // Toggle chat widget
+        chatToggle.addEventListener('click', () => {
+            chatbox.classList.toggle('active');
+            chatToggle.classList.toggle('hidden');
+        });
+
+        minimizeChat.addEventListener('click', () => {
+            chatbox.classList.remove('active');
+            chatToggle.classList.remove('hidden');
+        });
+
+        // Send message function
+        function sendUserMessage() {
+            const message = userInput.value.trim();
+            if (message) {
+                addMessage('user', message);
+                userInput.value = '';
+                processUserMessage(message);
+            }
+        }
+
+        // Event listeners for sending messages
+        sendMessage.addEventListener('click', sendUserMessage);
+        userInput.addEventListener('keypress', (e) => {
+            if (e.key === 'Enter') {
+                sendUserMessage();
+            }
+        });
+
+        // Add message to chat
+        function addMessage(type, content) {
+            const messageDiv = document.createElement('div');
+            messageDiv.className = `message ${type}-message`;
+            
+            if (type === 'bot') {
+                messageDiv.innerHTML = `
+                    <i class="fas fa-robot bot-icon"></i>
+                    <div class="message-content">${content}</div>
+                `;
+            } else {
+                messageDiv.innerHTML = `
+                    <div class="message-content">${content}</div>
+                    <i class="fas fa-user user-icon"></i>
+                `;
+            }
+            
+            chatMessages.appendChild(messageDiv);
+            chatMessages.scrollTop = chatMessages.scrollHeight;
+        }
+
+        // Process user message and generate response
+        function processUserMessage(message) {
+            // Simulate typing indicator
+            const typingDiv = document.createElement('div');
+            typingDiv.className = 'message bot-message typing';
+            typingDiv.innerHTML = `
+                <i class="fas fa-robot bot-icon"></i>
+                <div class="message-content">
+                    <div class="typing-indicator">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </div>
+                </div>
+            `;
+            chatMessages.appendChild(typingDiv);
+            chatMessages.scrollTop = chatMessages.scrollHeight;
+
+            // Simulate AI processing time
+            setTimeout(() => {
+                chatMessages.removeChild(typingDiv);
+                const response = generateBotResponse(message.toLowerCase());
+                addMessage('bot', response);
+            }, 1500);
+        }
+
+        // Quick option selection
+        function askBot(topic) {
+            addMessage('user', topic);
+            processUserMessage(topic);
+        }
+
+        // Generate bot response based on user input
+        function generateBotResponse(message) {
+            const responses = {
+                'plan a trip': `I can help you plan your trip! Here's what you need to consider:
+                    <ul>
+                        <li>Choose your destination and travel dates</li>
+                        <li>Book transportation (flights, trains, or buses)</li>
+                        <li>Find suitable accommodation</li>
+                        <li>Plan your itinerary</li>
+                        <li>Consider travel insurance</li>
+                    </ul>
+                    What would you like to know more about?`,
+                
+                'find accommodations': `I can help you find the perfect place to stay! Consider these options:
+                    <ul>
+                        <li>Hotels and resorts</li>
+                        <li>Homestays and guesthouses</li>
+                        <li>Service apartments</li>
+                        <li>Hostels for budget travel</li>
+                    </ul>
+                    What type of accommodation are you looking for?`,
+                
+                'transportation options': `Here are the main transportation options available:
+                    <ul>
+                        <li>Flights - Quick but more expensive</li>
+                        <li>Trains - Comfortable for long distances</li>
+                        <li>Buses - Economical option</li>
+                        <li>Car rentals - Flexibility to explore</li>
+                    </ul>
+                    Which mode of transport would you prefer?`,
+                
+                'local attractions': `I can suggest popular attractions based on your interests:
+                    <ul>
+                        <li>Historical monuments</li>
+                        <li>Natural landscapes</li>
+                        <li>Cultural sites</li>
+                        <li>Adventure activities</li>
+                        <li>Local experiences</li>
+                    </ul>
+                    What type of attractions interest you?`,
+                
+                'travel tips': `Here are some essential travel tips:
+                    <ul>
+                        <li>Check weather conditions before traveling</li>
+                        <li>Keep emergency contacts handy</li>
+                        <li>Carry necessary medications</li>
+                        <li>Research local customs and etiquette</li>
+                        <li>Keep important documents safe</li>
+                    </ul>
+                    Need any specific travel advice?`
+            };
+
+            // Check for exact matches first
+            if (responses[message]) {
+                return responses[message];
+            }
+
+            // Check for keywords in the message
+            if (message.includes('hotel') || message.includes('stay') || message.includes('room')) {
+                return responses['find accommodations'];
+            }
+            if (message.includes('transport') || message.includes('travel') || message.includes('how to reach')) {
+                return responses['transportation options'];
+            }
+            if (message.includes('attraction') || message.includes('place') || message.includes('visit')) {
+                return responses['local attractions'];
+            }
+            if (message.includes('tip') || message.includes('advice') || message.includes('suggest')) {
+                return responses['travel tips'];
+            }
+            if (message.includes('plan') || message.includes('trip') || message.includes('holiday')) {
+                return responses['plan a trip'];
+            }
+
+            // Default response
+            return `I can help you with planning trips, finding accommodations, transportation options, local attractions, and travel tips. 
+                    Please choose one of these topics or ask a specific question about your travel needs.`;
+        }
+
+        // Check and update login status
+        function updateLoginStatus() {
+            const userData = JSON.parse(localStorage.getItem('userData')); // Changed from sessionStorage to localStorage
+            const authButtons = document.getElementById('authButtons');
+            const userProfile = document.getElementById('userProfile');
+            const userName = document.getElementById('userName');
+
+            if (userData && userData.isLoggedIn) { // Added check for isLoggedIn flag
+                // User is logged in
+                authButtons.style.display = 'none';
+                userProfile.style.display = 'block';
+                userName.textContent = userData.name || userData.email;
+            } else {
+                // User is not logged in
+                authButtons.style.display = 'flex';
+                userProfile.style.display = 'none';
+            }
+        }
+
+        // Call updateLoginStatus when page loads
+        window.addEventListener('DOMContentLoaded', updateLoginStatus);
+
+        // Add event listener for storage changes (in case user logs in from another tab)
+        window.addEventListener('storage', updateLoginStatus);
+
+        // Modify logout function
+        function logout() {
+            localStorage.removeItem('userData');
+            updateLoginStatus();
+            window.location.href = '/'; // Redirect to home page after logout
+        }
+    </script>
+</body>
+</html>

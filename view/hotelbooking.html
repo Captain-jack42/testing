@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hotel Booking - Yatra</title>
+    <link rel="stylesheet" href="/css/home.css">
+    <link rel="stylesheet" href="/css/hotelbooking.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <header class="header">
+        <nav class="navbar">
+            <div class="logo">
+                <h1><i class="fas fa-map"></i> Yatra <i class="fas fa-plane"></i></h1>
+            </div>
+            <ul class="nav-links">
+                <li><a href="/">Home</a></li>
+                <li><a href="/destinations">Destinations</a></li>
+                <li><a href="/packages">Packages</a></li>
+                <li><a href="/services">Services</a></li>
+                <li><a href="/contact">Contact</a></li>
+                <li id="authButtons">
+                    <a href="/login" class="login-btn">Login</a>
+                    <a href="/signup" class="signup-btn">Sign Up</a>
+                </li>
+                <li id="userProfile" style="display: none;">
+                    <div class="user-profile">
+                        <span id="userName">User</span>
+                        <button onclick="logout()" class="logout-btn">Logout</button>
+                    </div>
+                </li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section class="hero">
+            <div class="hero-content">
+                <h1>Find Your Perfect Stay</h1>
+                <p>Book hotels at the best prices across India</p>
+            </div>
+        </section>
+
+        <section class="search-section">
+            <div class="search-container">
+                <form id="hotelSearchForm" class="search-form">
+                    <div class="form-group">
+                        <label for="location"><i class="fas fa-map-marker-alt"></i> Where do you want to go?</label>
+                        <input type="text" id="location" name="location" placeholder="Enter city or hotel name" required>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="checkIn"><i class="fas fa-calendar-check"></i> Check-in</label>
+                            <input type="date" id="checkIn" name="checkIn" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="checkOut"><i class="fas fa-calendar-times"></i> Check-out</label>
+                            <input type="date" id="checkOut" name="checkOut" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="guests"><i class="fas fa-users"></i> Guests</label>
+                            <select id="guests" name="guests" required>
+                                <option value="1">1 Guest</option>
+                                <option value="2">2 Guests</option>
+                                <option value="3">3 Guests</option>
+                                <option value="4">4 Guests</option>
+                                <option value="5">5+ Guests</option>
+                            </select>
+                        </div>
+                    </div>
+                    <button type="submit" class="search-btn">Search Hotels</button>
+                </form>
+            </div>
+        </section>
+
+        <section class="filters-section">
+            <div class="filters-container">
+                <div class="filter-group">
+                    <h3>Price Range</h3>
+                    <div class="price-slider">
+                        <input type="range" min="0" max="10000" value="5000" id="priceRange">
+                        <div class="price-range-labels">
+                            <span>₹0</span>
+                            <span>₹5000</span>
+                            <span>₹10000+</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="filter-group">
+                    <h3>Star Rating</h3>
+                    <div class="star-filters">
+                        <label><input type="checkbox" value="5"> 5 Star</label>
+                        <label><input type="checkbox" value="4"> 4 Star</label>
+                        <label><input type="checkbox" value="3"> 3 Star</label>
+                        <label><input type="checkbox" value="2"> 2 Star</label>
+                        <label><input type="checkbox" value="1"> 1 Star</label>
+                    </div>
+                </div>
+                <div class="filter-group">
+                    <h3>Amenities</h3>
+                    <div class="amenity-filters">
+                        <label><input type="checkbox" value="wifi"> WiFi</label>
+                        <label><input type="checkbox" value="pool"> Swimming Pool</label>
+                        <label><input type="checkbox" value="parking"> Parking</label>
+                        <label><input type="checkbox" value="restaurant"> Restaurant</label>
+                        <label><input type="checkbox" value="gym"> Gym</label>
+                        <label><input type="checkbox" value="spa"> Spa</label>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="hotel-results">
+            <div class="results-container">
+                <div class="results-header">
+                    <h2>Available Hotels</h2>
+                    <div class="sort-options">
+                        <select id="sortBy">
+                            <option value="price-low">Price: Low to High</option>
+                            <option value="price-high">Price: High to Low</option>
+                            <option value="rating">Highest Rated</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="hotel-grid">
+                    <div class="hotel-card" data-price="3500" data-rating="4" data-amenities="wifi,parking,restaurant">
+                        <img src="https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format&fit=crop&q=80" alt="Hotel Taj Palace">
+                        <div class="hotel-info">
+                            <h3>Hotel Taj Palace</h3>
+                            <div class="hotel-rating">
+                                <span class="stars">★★★★</span>
+                                <span class="rating-text">4.0</span>
+                            </div>
+                            <p class="location"><i class="fas fa-map-marker-alt"></i> Mumbai, Maharashtra</p>
+                            <div class="amenities">
+                                <span><i class="fas fa-wifi"></i> WiFi</span>
+                                <span><i class="fas fa-parking"></i> Parking</span>
+                                <span><i class="fas fa-utensils"></i> Restaurant</span>
+                            </div>
+                            <div class="price-info">
+                                <span class="price">₹3,500</span>
+                                <span class="per-night">per night</span>
+                            </div>
+                            <button class="book-now-btn">Book Now</button>
+                        </div>
+                    </div>
+
+                    <div class="hotel-card" data-price="2500" data-rating="3" data-amenities="wifi,parking">
+                        <img src="https://images.unsplash.com/photo-1582719508461-905c673771fd?auto=format&fit=crop&q=80" alt="Green Valley Resort">
+                        <div class="hotel-info">
+                            <h3>Green Valley Resort</h3>
+                            <div class="hotel-rating">
+                                <span class="stars">★★★</span>
+                                <span class="rating-text">3.0</span>
+                            </div>
+                            <p class="location"><i class="fas fa-map-marker-alt"></i> Manali, Himachal Pradesh</p>
+                            <div class="amenities">
+                                <span><i class="fas fa-wifi"></i> WiFi</span>
+                                <span><i class="fas fa-parking"></i> Parking</span>
+                            </div>
+                            <div class="price-info">
+                                <span class="price">₹2,500</span>
+                                <span class="per-night">per night</span>
+                            </div>
+                            <button class="book-now-btn">Book Now</button>
+                        </div>
+                    </div>
+
+                    <div class="hotel-card" data-price="6000" data-rating="5" data-amenities="wifi,pool,parking,restaurant,gym,spa">
+                        <img src="https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?auto=format&fit=crop&q=80" alt="Luxury Palace Hotel">
+                        <div class="hotel-info">
+                            <h3>Luxury Palace Hotel</h3>
+                            <div class="hotel-rating">
+                                <span class="stars">★★★★★</span>
+                                <span class="rating-text">5.0</span>
+                            </div>
+                            <p class="location"><i class="fas fa-map-marker-alt"></i> Delhi, India</p>
+                            <div class="amenities">
+                                <span><i class="fas fa-wifi"></i> WiFi</span>
+                                <span><i class="fas fa-swimming-pool"></i> Pool</span>
+                                <span><i class="fas fa-dumbbell"></i> Gym</span>
+                                <span><i class="fas fa-spa"></i> Spa</span>
+                            </div>
+                            <div class="price-info">
+                                <span class="price">₹6,000</span>
+                                <span class="per-night">per night</span>
+                            </div>
+                            <button class="book-now-btn">Book Now</button>
+                        </div>
+                    </div>
+
+                    <!-- Add more hotel cards here -->
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>About Yatra</h3>
+                <p>Your trusted partner for memorable travel experiences across India.</p>
+            </div>
+            <div class="footer-section">
+                <h3>Quick Links</h3>
+                <ul>
+                    <li><a href="/about">About Us</a></li>
+                    <li><a href="/terms">Terms & Conditions</a></li>
+                    <li><a href="/privacy">Privacy Policy</a></li>
+                    <li><a href="/faq">FAQs</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>Contact Us</h3>
+                <p>Email: info@yatra.com</p>
+                <p>Phone: +91 1234567890</p>
+            </div>
+            <div class="footer-section">
+                <h3>Follow Us</h3>
+                <div class="social-links">
+                    <a href="#"><i class="fab fa-facebook"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-linkedin"></i></a>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2024 Yatra. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="/js/nav.js"></script>
+    <script src="/js/hotelbooking.js"></script>
+</body>
+</html> 

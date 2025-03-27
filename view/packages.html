@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Travel Packages - Yatra</title>
+    <link rel="stylesheet" href="/css/home.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <header class="header">
+        <nav class="navbar">
+            <div class="logo">
+                <h1><i class="fas fa-map"></i> Yatra <i class="fas fa-plane"></i></h1> 
+            </div>
+            <ul class="nav-links">
+                <li><a href="/">Home</a></li>
+                <li><a href="/destinations">Destinations</a></li>
+                <li><a href="/packages" class="active">Packages</a></li>
+                <li><a href="/services">Services</a></li>
+                <li><a href="/contact">Contact</a></li>
+                <li id="authButtons">
+                    <a href="/login" class="login-btn">Login</a>
+                    <a href="/signup" class="signup-btn">Sign Up</a>
+                </li>
+                <li id="userProfile" style="display: none;">
+                    <div class="user-profile">
+                        <span id="userName">User</span>
+                        <button onclick="logout()" class="logout-btn">Logout</button>
+                    </div>
+                </li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section class="hero">
+            <div class="hero-content">
+                <video autoplay muted loop class="hero-video" style="
+                    position: absolute;
+                    top: 0;
+                    left: 0;
+                    width: 100%;
+                    height: 100%;
+                    object-fit: cover;
+                    z-index: 1;
+                    filter: brightness(0.7);
+                ">
+                    <source src="/css/videos/video4.mp4" type="video/mp4">
+                </video>
+                <div class="hero-video-overlay" style="
+                    position: absolute;
+                    top: 0;
+                    left: 0;
+                    width: 100%;
+                    height: 100%;
+                    background: linear-gradient(to bottom, rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.5));
+                    z-index: 2;
+                "></div>
+                <div style="
+                    position: relative;
+                    z-index: 3;
+                    text-align: center;
+                    color: white;
+                    width: 100%;
+                ">
+                    <h1>Travel Packages</h1>
+                    <p>Curated packages for unforgettable experiences</p>
+                    <form id="searchForm" class="search-box">
+                        <input type="text" id="searchInput" placeholder="Where do you want to go?" required>
+                        <button type="submit" class="search-btn">Search</button>
+                    </form>
+                </div>
+            </div>
+        </section>
+<br>
+        <section class="packages">
+            <div class="package-filters">
+                <button class="filter-btn active">All Packages</button>
+                <button class="filter-btn">Family</button>
+                <button class="filter-btn">Honeymoon</button>
+                <button class="filter-btn">Adventure</button>
+                <button class="filter-btn">Pilgrimage</button>
+            </div>
+
+            <div class="package-cards">
+                <!-- Family Package -->
+                <div class="package-card">
+                    <img src="https://images.unsplash.com/photo-1602216056096-3b40cc0c9944?auto=format&fit=crop&q=80" alt="Kerala Family Package">
+                    <div class="package-content">
+                        <h3>Family Fun in Kerala</h3>
+                        <p class="duration"><i class="fas fa-clock"></i> 6 Days / 5 Nights</p>
+                        <ul class="highlights">
+                            <li><i class="fas fa-check"></i> Kid-friendly Resort</li>
+                            <li><i class="fas fa-check"></i> Children's Activities</li>
+                            <li><i class="fas fa-check"></i> Family Pool Access</li>
+                        </ul>
+                        <div class="package-footer">
+                            <div class="price">
+                                <span class="amount">₹28,999</span>
+                                <span class="per-person">per family</span>
+                            </div>
+                            <button class="book-btn" 
+                                data-package="Family Fun in Kerala"
+                                data-duration="6 Days / 5 Nights"
+                                data-price="28999"
+                                onclick="bookPackage(this)">Book Now</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Honeymoon Package -->
+                <div class="package-card">
+                    <img src="https://images.unsplash.com/photo-1467226632440-65f0b4957563?auto=format&fit=crop&q=80" alt="Udaipur Package">
+                    <div class="package-content">
+                        <h3>Romantic Udaipur Escape</h3>
+                        <p class="duration"><i class="fas fa-clock"></i> 5 Days / 4 Nights</p>
+                        <ul class="highlights">
+                            <li><i class="fas fa-check"></i> Luxury Suite Stay</li>
+                            <li><i class="fas fa-check"></i> Romantic Dinner Cruise</li>
+                            <li><i class="fas fa-check"></i> Couple Spa Treatment</li>
+                        </ul>
+                        <div class="package-footer">
+                            <div class="price">
+                                <span class="amount">₹35,999</span>
+                                <span class="per-person">per couple</span>
+                            </div>
+                            <button class="book-btn"
+                                data-package="Romantic Udaipur Escape"
+                                data-duration="5 Days / 4 Nights"
+                                data-price="35999"
+                                onclick="bookPackage(this)">Book Now</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Pilgrim Package -->
+                <div class="package-card">
+                    <img src="https://images.unsplash.com/photo-1606466123170-d39e5346aa76?auto=format&fit=crop&q=80" alt="Char Dham Package">
+                    <div class="package-content">
+                        <h3>Char Dham Yatra</h3>
+                        <p class="duration"><i class="fas fa-clock"></i> 12 Days / 11 Nights</p>
+                        <ul class="highlights">
+                            <li><i class="fas fa-check"></i> Temple Darshan</li>
+                            <li><i class="fas fa-check"></i> Sacred Rituals</li>
+                            <li><i class="fas fa-check"></i> Comfortable Stay</li>
+                        </ul>
+                        <div class="package-footer">
+                            <div class="price">
+                                <span class="amount">₹45,999</span>
+                                <span class="per-person">per person</span>
+                            </div>
+                            <button class="book-btn"
+                                data-package="Char Dham Yatra"
+                                data-duration="12 Days / 11 Nights"
+                                data-price="45999"
+                                onclick="bookPackage(this)">Book Now</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Adventure Package -->
+                <div class="package-card">
+                    <img src="https://images.unsplash.com/photo-1585016495481-91613a3ab1bc?auto=format&fit=crop&q=80" alt="Himalayan Trek Package">
+                    <div class="package-content">
+                        <h3>Himalayan Trek</h3>
+                        <p class="duration"><i class="fas fa-clock"></i> 8 Days / 7 Nights</p>
+                        <ul class="highlights">
+                            <li><i class="fas fa-check"></i> Trekking Expedition</li>
+                            <li><i class="fas fa-check"></i> Mountain Camping</li>
+                            <li><i class="fas fa-check"></i> Adventure Activities</li>
+                        </ul>
+                        <div class="package-footer">
+                            <div class="price">
+                                <span class="amount">₹38,999</span>
+                                <span class="per-person">per person</span>
+                            </div>
+                            <button class="book-btn"
+                                data-package="Himalayan Trek"
+                                data-duration="8 Days / 7 Nights"
+                                data-price="38999"
+                                onclick="bookPackage(this)">Book Now</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Goa Package -->
+                <div class="package-card">
+                    <img src="https://images.unsplash.com/photo-1512343879784-a960bf40e7f2?auto=format&fit=crop&q=80" alt="Goa Package">
+                    <div class="package-content">
+                        <h3>Goa Beach Paradise</h3>
+                        <p class="duration"><i class="fas fa-clock"></i> 5 Days / 4 Nights</p>
+                        <ul class="highlights">
+                            <li><i class="fas fa-check"></i> Luxury Beach Resort Stay</li>
+                            <li><i class="fas fa-check"></i> Water Sports Activities</li>
+                            <li><i class="fas fa-check"></i> Cruise Dinner</li>
+                        </ul>
+                        <div class="package-footer">
+                            <div class="price">
+                                <span class="amount">₹24,999</span>
+                                <span class="per-person">per person</span>
+                            </div>
+                            <button class="book-btn" 
+                                data-package="Goa Beach Paradise"
+                                data-duration="5 Days / 4 Nights"
+                                data-price="24999"
+                                onclick="bookPackage(this)">Book Now</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Kerala Package -->
+                <div class="package-card">
+                    <img src="https://images.unsplash.com/photo-1593693397690-362cb9666fc2?auto=format&fit=crop&q=80" alt="Kerala Package">
+                    <div class="package-content">
+                        <h3>Kerala Backwater Bliss</h3>
+                        <p class="duration"><i class="fas fa-clock"></i> 6 Days / 5 Nights</p>
+                        <ul class="highlights">
+                            <li><i class="fas fa-check"></i> Houseboat Stay</li>
+                            <li><i class="fas fa-check"></i> Ayurvedic Spa</li>
+                            <li><i class="fas fa-check"></i> Tea Garden Visit</li>
+                        </ul>
+                        <div class="package-footer">
+                            <div class="price">
+                                <span class="amount">₹32,999</span>
+                                <span class="per-person">per person</span>
+                            </div>
+                            <button class="book-btn"
+                                data-package="Kerala Backwater Bliss"
+                                data-duration="6 Days / 5 Nights"
+                                data-price="32999"
+                                onclick="bookPackage(this)">Book Now</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Ladakh Package -->
+                <div class="package-card">
+                    <img src="https://images.unsplash.com/photo-1627896157734-4d7d4388f28b?auto=format&fit=crop&q=80" alt="Ladakh Package">
+                    <div class="package-content">
+                        <h3>Ladakh Adventure</h3>
+                        <p class="duration"><i class="fas fa-clock"></i> 7 Days / 6 Nights</p>
+                        <ul class="highlights">
+                            <li><i class="fas fa-check"></i> Pangong Lake Camp</li>
+                            <li><i class="fas fa-check"></i> Bike Trip</li>
+                            <li><i class="fas fa-check"></i> Monastery Visit</li>
+                        </ul>
+                        <div class="package-footer">
+                            <div class="price">
+                                <span class="amount">₹39,999</span>
+                                <span class="per-person">per person</span>
+                            </div>
+                            <button class="book-btn"
+                                data-package="Ladakh Adventure"
+                                data-duration="7 Days / 6 Nights"
+                                data-price="39999"
+                                onclick="bookPackage(this)">Book Now</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>About Yatra</h3>
+                <p>Your trusted partner for memorable travel experiences across India.</p>
+            </div>
+            <div class="footer-section">
+                <h3>Quick Links</h3>
+                <ul>
+                    <li><a href="/about">About Us</a></li>
+                    <li><a href="/terms">Terms & Conditions</a></li>
+                    <li><a href="/privacy">Privacy Policy</a></li>
+                    <li><a href="/faq">FAQs</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>Contact Us</h3>
+                <p>Email: info@yatra.com</p>
+                <p>Phone: +91 1234567890</p>
+            </div>
+            <div class="footer-section">
+                <h3>Follow Us</h3>
+                <div class="social-links">
+                    <a href="#"><i class="fab fa-facebook"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-linkedin"></i></a>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2024 Yatra. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Handle package booking
+        function bookPackage(button) {
+            const packageData = {
+                service: button.getAttribute('data-package'),
+                duration: button.getAttribute('data-duration'),
+                amount: button.getAttribute('data-price'),
+                timestamp: Date.now()
+            };
+
+            // Store package data in sessionStorage
+            sessionStorage.setItem('selectedPackage', JSON.stringify(packageData));
+
+            // Redirect to payment page
+            window.location.href = '/payment';
+        }
+
+        // Handle filter buttons
+        const filterButtons = document.querySelectorAll('.filter-btn');
+        const packageCards = document.querySelectorAll('.package-card');
+
+        filterButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                // Remove active class from all buttons
+                filterButtons.forEach(btn => btn.classList.remove('active'));
+                // Add active class to clicked button
+                button.classList.add('active');
+
+                const selectedCategory = button.textContent.toLowerCase();
+
+                // Filter packages based on selected category
+                packageCards.forEach(card => {
+                    const packageTitle = card.querySelector('h3').textContent.toLowerCase();
+                    const packageType = getPackageType(packageTitle);
+
+                    if (selectedCategory === 'all packages' || packageType === selectedCategory) {
+                        card.style.display = 'block';
+                    } else {
+                        card.style.display = 'none';
+                    }
+                });
+            });
+        });
+
+        // Function to determine package type based on title
+        function getPackageType(title) {
+            if (title.includes('family') || title.includes('kid') || title.includes('children')) {
+                return 'family';
+            } else if (title.includes('romantic') || title.includes('honeymoon') || title.includes('couple')) {
+                return 'honeymoon';
+            } else if (title.includes('adventure') || title.includes('trek') || title.includes('camping')) {
+                return 'adventure';
+            } else if (title.includes('temple') || title.includes('yatra') || title.includes('pilgrim')) {
+                return 'pilgrimage';
+            }
+            return 'all packages';
+        }
+    </script>
+    <script src="/js/nav.js"></script>
+</body>
+</html> 

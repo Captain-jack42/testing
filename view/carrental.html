@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Car Rental - Yatra</title>
+    <link rel="stylesheet" href="/css/home.css">
+    <link rel="stylesheet" href="/css/carrental.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <header class="header">
+        <nav class="navbar">
+            <div class="logo">
+                <h1><i class="fas fa-map"></i> Yatra <i class="fas fa-plane"></i></h1>
+            </div>
+            <ul class="nav-links">
+                <li><a href="/">Home</a></li>
+                <li><a href="/destinations">Destinations</a></li>
+                <li><a href="/packages">Packages</a></li>
+                <li><a href="/services">Services</a></li>
+                <li><a href="/contact">Contact</a></li>
+                <li id="authButtons">
+                    <a href="/login" class="login-btn">Login</a>
+                    <a href="/signup" class="signup-btn">Sign Up</a>
+                </li>
+                <li id="userProfile" style="display: none;">
+                    <div class="user-profile">
+                        <span id="userName">User</span>
+                        <button onclick="logout()" class="logout-btn">Logout</button>
+                    </div>
+                </li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section class="hero" style="background-image: url('https://images.pexels.com/photos/3806288/pexels-photo-3806288.jpeg'); background-size: cover; background-position: center;">
+            <div class="hero-content">
+                <h1>Rent a Car</h1>
+                <p>Find the perfect vehicle for your journey</p>
+            </div>
+        </section>
+
+        <section class="search-section">
+            <div class="search-container">
+                <form id="carSearchForm" class="search-form">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="pickupLocation"><i class="fas fa-map-marker-alt"></i> Pick-up Location</label>
+                            <input type="text" id="pickupLocation" name="pickupLocation" placeholder="Enter city or airport" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="dropoffLocation"><i class="fas fa-map-marker"></i> Drop-off Location</label>
+                            <input type="text" id="dropoffLocation" name="dropoffLocation" placeholder="Same as pick-up">
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="pickupDate"><i class="fas fa-calendar-check"></i> Pick-up Date</label>
+                            <input type="date" id="pickupDate" name="pickupDate" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="pickupTime"><i class="fas fa-clock"></i> Pick-up Time</label>
+                            <select id="pickupTime" name="pickupTime" required>
+                                <option value="00:00">12:00 AM</option>
+                                <option value="01:00">1:00 AM</option>
+                                <option value="02:00">2:00 AM</option>
+                                <option value="03:00">3:00 AM</option>
+                                <option value="04:00">4:00 AM</option>
+                                <option value="05:00">5:00 AM</option>
+                                <option value="06:00">6:00 AM</option>
+                                <option value="07:00">7:00 AM</option>
+                                <option value="08:00">8:00 AM</option>
+                                <option value="09:00">9:00 AM</option>
+                                <option value="10:00">10:00 AM</option>
+                                <option value="11:00">11:00 AM</option>
+                                <option value="12:00">12:00 PM</option>
+                                <option value="13:00">1:00 PM</option>
+                                <option value="14:00">2:00 PM</option>
+                                <option value="15:00">3:00 PM</option>
+                                <option value="16:00">4:00 PM</option>
+                                <option value="17:00">5:00 PM</option>
+                                <option value="18:00">6:00 PM</option>
+                                <option value="19:00">7:00 PM</option>
+                                <option value="20:00">8:00 PM</option>
+                                <option value="21:00">9:00 PM</option>
+                                <option value="22:00">10:00 PM</option>
+                                <option value="23:00">11:00 PM</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="dropoffDate"><i class="fas fa-calendar-times"></i> Drop-off Date</label>
+                            <input type="date" id="dropoffDate" name="dropoffDate" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="dropoffTime"><i class="fas fa-clock"></i> Drop-off Time</label>
+                            <select id="dropoffTime" name="dropoffTime" required>
+                                <option value="00:00">12:00 AM</option>
+                                <option value="01:00">1:00 AM</option>
+                                <option value="02:00">2:00 AM</option>
+                                <option value="03:00">3:00 AM</option>
+                                <option value="04:00">4:00 AM</option>
+                                <option value="05:00">5:00 AM</option>
+                                <option value="06:00">6:00 AM</option>
+                                <option value="07:00">7:00 AM</option>
+                                <option value="08:00">8:00 AM</option>
+                                <option value="09:00">9:00 AM</option>
+                                <option value="10:00">10:00 AM</option>
+                                <option value="11:00">11:00 AM</option>
+                                <option value="12:00">12:00 PM</option>
+                                <option value="13:00">1:00 PM</option>
+                                <option value="14:00">2:00 PM</option>
+                                <option value="15:00">3:00 PM</option>
+                                <option value="16:00">4:00 PM</option>
+                                <option value="17:00">5:00 PM</option>
+                                <option value="18:00">6:00 PM</option>
+                                <option value="19:00">7:00 PM</option>
+                                <option value="20:00">8:00 PM</option>
+                                <option value="21:00">9:00 PM</option>
+                                <option value="22:00">10:00 PM</option>
+                                <option value="23:00">11:00 PM</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="carType"><i class="fas fa-car"></i> Car Type</label>
+                            <select id="carType" name="carType" required>
+                                <option value="economy">Economy</option>
+                                <option value="compact">Compact</option>
+                                <option value="midsize">Mid-size</option>
+                                <option value="suv">SUV</option>
+                                <option value="luxury">Luxury</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="transmission"><i class="fas fa-cog"></i> Transmission</label>
+                            <select id="transmission" name="transmission" required>
+                                <option value="automatic">Automatic</option>
+                                <option value="manual">Manual</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="fuelType"><i class="fas fa-gas-pump"></i> Fuel Type</label>
+                            <select id="fuelType" name="fuelType" required>
+                                <option value="petrol">Petrol</option>
+                                <option value="diesel">Diesel</option>
+                                <option value="electric">Electric</option>
+                                <option value="hybrid">Hybrid</option>
+                            </select>
+                        </div>
+                    </div>
+                    <button type="submit" class="search-btn">Search Cars</button>
+                </form>
+            </div>
+        </section>
+
+        <section class="filters-section">
+            <div class="filters-container">
+                <div class="filter-group">
+                    <h3>Price Range</h3>
+                    <div class="price-slider">
+                        <input type="range" min="0" max="5000" value="2500" id="priceRange">
+                        <div class="price-range-labels">
+                            <span>₹0</span>
+                            <span>₹2500</span>
+                            <span>₹5000+</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="filter-group">
+                    <h3>Features</h3>
+                    <div class="feature-filters">
+                        <label><input type="checkbox" value="ac"> Air Conditioning</label>
+                        <label><input type="checkbox" value="bluetooth"> Bluetooth</label>
+                        <label><input type="checkbox" value="gps"> GPS Navigation</label>
+                        <label><input type="checkbox" value="childseat"> Child Seat</label>
+                        <label><input type="checkbox" value="usb"> USB Port</label>
+                        <label><input type="checkbox" value="backup"> Backup Camera</label>
+                    </div>
+                </div>
+                <div class="filter-group">
+                    <h3>Car Brand</h3>
+                    <div class="brand-filters">
+                        <label><input type="checkbox" value="maruti"> Maruti Suzuki</label>
+                        <label><input type="checkbox" value="hyundai"> Hyundai</label>
+                        <label><input type="checkbox" value="honda"> Honda</label>
+                        <label><input type="checkbox" value="toyota"> Toyota</label>
+                        <label><input type="checkbox" value="tata"> Tata</label>
+                        <label><input type="checkbox" value="mahindra"> Mahindra</label>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="car-results">
+            <div class="results-container">
+                <div class="results-header">
+                    <h2>Available Cars</h2>
+                    <div class="sort-options">
+                        <select id="sortBy">
+                            <option value="price-low">Price: Low to High</option>
+                            <option value="price-high">Price: High to Low</option>
+                            <option value="popular">Most Popular</option>
+                            <option value="rating">Highest Rated</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="car-grid">
+                    <div class="car-card" data-price="1500" data-brand="maruti" data-type="economy" data-transmission="manual" data-fuel="petrol" data-features="ac,bluetooth,usb" data-location="mumbai">
+                        <img src="https://images.pexels.com/photos/170811/pexels-photo-170811.jpeg" alt="Maruti Swift">
+                        <div class="car-info">
+                            <h3>Maruti Swift</h3>
+                            <div class="car-rating">
+                                <span class="stars">★★★★</span>
+                                <span class="rating-text">4.2</span>
+                            </div>
+                            <div class="car-details">
+                                <span><i class="fas fa-users"></i> 5 Seats</span>
+                                <span><i class="fas fa-cog"></i> Manual</span>
+                                <span><i class="fas fa-gas-pump"></i> Petrol</span>
+                            </div>
+                            <div class="car-features">
+                                <span><i class="fas fa-snowflake"></i> AC</span>
+                                <span><i class="fab fa-bluetooth"></i> Bluetooth</span>
+                                <span><i class="fas fa-usb"></i> USB</span>
+                            </div>
+                            <div class="price-info">
+                                <span class="price">₹1,500</span>
+                                <span class="per-day">per day</span>
+                            </div>
+                            <button class="book-now-btn">Book Now</button>
+                        </div>
+                    </div>
+
+                    <div class="car-card" data-price="2500" data-brand="hyundai" data-type="compact" data-transmission="automatic" data-fuel="petrol" data-features="ac,bluetooth,gps,usb" data-location="delhi">
+                        <img src="https://images.pexels.com/photos/116675/pexels-photo-116675.jpeg" alt="Hyundai Creta">
+                        <div class="car-info">
+                            <h3>Hyundai Creta</h3>
+                            <div class="car-rating">
+                                <span class="stars">★★★★★</span>
+                                <span class="rating-text">4.5</span>
+                            </div>
+                            <div class="car-details">
+                                <span><i class="fas fa-users"></i> 5 Seats</span>
+                                <span><i class="fas fa-cog"></i> Automatic</span>
+                                <span><i class="fas fa-gas-pump"></i> Petrol</span>
+                            </div>
+                            <div class="car-features">
+                                <span><i class="fas fa-snowflake"></i> AC</span>
+                                <span><i class="fas fa-map-marked-alt"></i> GPS</span>
+                                <span><i class="fab fa-bluetooth"></i> Bluetooth</span>
+                            </div>
+                            <div class="price-info">
+                                <span class="price">₹2,500</span>
+                                <span class="per-day">per day</span>
+                            </div>
+                            <button class="book-now-btn">Book Now</button>
+                        </div>
+                    </div>
+
+                    <div class="car-card" data-price="4500" data-brand="toyota" data-type="suv" data-transmission="automatic" data-fuel="diesel" data-features="ac,bluetooth,gps,backup,childseat" data-location="bangalore">
+                        <img src="https://images.pexels.com/photos/1638459/pexels-photo-1638459.jpeg" alt="Toyota Fortuner">
+                        <div class="car-info">
+                            <h3>Toyota Fortuner</h3>
+                            <div class="car-rating">
+                                <span class="stars">★★★★★</span>
+                                <span class="rating-text">4.8</span>
+                            </div>
+                            <div class="car-details">
+                                <span><i class="fas fa-users"></i> 7 Seats</span>
+                                <span><i class="fas fa-cog"></i> Automatic</span>
+                                <span><i class="fas fa-gas-pump"></i> Diesel</span>
+                            </div>
+                            <div class="car-features">
+                                <span><i class="fas fa-snowflake"></i> AC</span>
+                                <span><i class="fas fa-map-marked-alt"></i> GPS</span>
+                                <span><i class="fas fa-camera"></i> Backup Camera</span>
+                            </div>
+                            <div class="price-info">
+                                <span class="price">₹4,500</span>
+                                <span class="per-day">per day</span>
+                            </div>
+                            <button class="book-now-btn">Book Now</button>
+                        </div>
+                    </div>
+
+                    <div class="car-card" data-price="3500" data-brand="honda" data-type="midsize" data-transmission="automatic" data-fuel="hybrid" data-features="ac,bluetooth,gps,usb,backup" data-location="mumbai">
+                        <img src="https://images.pexels.com/photos/3729464/pexels-photo-3729464.jpeg" alt="Honda City">
+                        <div class="car-info">
+                            <h3>Honda City Hybrid</h3>
+                            <div class="car-rating">
+                                <span class="stars">★★★★</span>
+                                <span class="rating-text">4.3</span>
+                            </div>
+                            <div class="car-details">
+                                <span><i class="fas fa-users"></i> 5 Seats</span>
+                                <span><i class="fas fa-cog"></i> Automatic</span>
+                                <span><i class="fas fa-gas-pump"></i> Hybrid</span>
+                            </div>
+                            <div class="car-features">
+                                <span><i class="fas fa-snowflake"></i> AC</span>
+                                <span><i class="fas fa-map-marked-alt"></i> GPS</span>
+                                <span><i class="fas fa-camera"></i> Backup Camera</span>
+                            </div>
+                            <div class="price-info">
+                                <span class="price">₹3,500</span>
+                                <span class="per-day">per day</span>
+                            </div>
+                            <button class="book-now-btn">Book Now</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>About Yatra</h3>
+                <p>Your trusted partner for memorable travel experiences across India.</p>
+            </div>
+            <div class="footer-section">
+                <h3>Quick Links</h3>
+                <ul>
+                    <li><a href="/about">About Us</a></li>
+                    <li><a href="/terms">Terms & Conditions</a></li>
+                    <li><a href="/privacy">Privacy Policy</a></li>
+                    <li><a href="/faq">FAQs</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>Contact Us</h3>
+                <p>Email: info@yatra.com</p>
+                <p>Phone: +91 1234567890</p>
+            </div>
+            <div class="footer-section">
+                <h3>Follow Us</h3>
+                <div class="social-links">
+                    <a href="#"><i class="fab fa-facebook"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-linkedin"></i></a>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2024 Yatra. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="/js/nav.js"></script>
+    <script src="/js/carrental.js"></script>
+</body>
+</html> 

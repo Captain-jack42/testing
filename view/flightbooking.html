@@ -1,0 +1,419 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Flight Booking - Yatra</title>
+    <link rel="stylesheet" href="/css/home.css">
+    <link rel="stylesheet" href="/css/flightbooking.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <header class="header">
+        <nav class="navbar">
+            <div class="logo">
+                <h1><i class="fas fa-map"></i> Yatra <i class="fas fa-plane"></i></h1>
+            </div>
+            <ul class="nav-links">
+                <li><a href="/">Home</a></li>
+                <li><a href="/destinations">Destinations</a></li>
+                <li><a href="/packages">Packages</a></li>
+                <li><a href="/services">Services</a></li>
+                <li><a href="/contact">Contact</a></li>
+                <li id="authButtons">
+                    <a href="/login" class="login-btn">Login</a>
+                    <a href="/signup" class="signup-btn">Sign Up</a>
+                </li>
+                <li id="userProfile" style="display: none;">
+                    <div class="user-profile">
+                        <span id="userName">User</span>
+                        <button onclick="logout()" class="logout-btn">Logout</button>
+                    </div>
+                </li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section class="hero">
+            <div class="hero-content">
+                <h1>Book Your Flight</h1>
+                <p>Find the best deals on flights across India and abroad</p>
+            </div>
+        </section>
+
+        <section class="search-section">
+            <div class="search-container">
+                <form id="flightSearchForm" class="search-form">
+                    <div class="trip-type">
+                        <label class="radio-label">
+                            <input type="radio" name="tripType" value="roundtrip" checked>
+                            Round Trip
+                        </label>
+                        <label class="radio-label">
+                            <input type="radio" name="tripType" value="oneway">
+                            One Way
+                        </label>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="from"><i class="fas fa-plane-departure"></i> From</label>
+                            <input type="text" id="from" name="from" placeholder="Departure City" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="to"><i class="fas fa-plane-arrival"></i> To</label>
+                            <input type="text" id="to" name="to" placeholder="Arrival City" required>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="departureDate"><i class="fas fa-calendar-check"></i> Departure</label>
+                            <input type="date" id="departureDate" name="departureDate" required>
+                        </div>
+                        <div class="form-group return-date-group">
+                            <label for="returnDate"><i class="fas fa-calendar-times"></i> Return</label>
+                            <input type="date" id="returnDate" name="returnDate">
+                        </div>
+                        <div class="form-group">
+                            <label for="passengers"><i class="fas fa-users"></i> Passengers</label>
+                            <select id="passengers" name="passengers" required>
+                                <option value="1">1 Passenger</option>
+                                <option value="2">2 Passengers</option>
+                                <option value="3">3 Passengers</option>
+                                <option value="4">4 Passengers</option>
+                                <option value="5">5+ Passengers</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="class"><i class="fas fa-chair"></i> Class</label>
+                            <select id="class" name="class" required>
+                                <option value="economy">Economy</option>
+                                <option value="premium">Premium Economy</option>
+                                <option value="business">Business</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="airline"><i class="fas fa-plane"></i> Preferred Airline</label>
+                            <select id="airline" name="airline">
+                                <option value="">Any Airline</option>
+                                <option value="indigo">IndiGo</option>
+                                <option value="airindia">Air India</option>
+                                <option value="vistara">Vistara</option>
+                                <option value="spicejet">SpiceJet</option>
+                            </select>
+                        </div>
+                    </div>
+                    <button type="submit" class="search-btn">Search Flights</button>
+                </form>
+            </div>
+        </section>
+
+        <section class="filters-section">
+            <div class="filters-container">
+                <div class="filter-group">
+                    <h3>Price Range</h3>
+                    <div class="price-slider">
+                        <input type="range" min="0" max="50000" value="25000" id="priceRange">
+                        <div class="price-range-labels">
+                            <span>₹0</span>
+                            <span>₹25000</span>
+                            <span>₹50000+</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="filter-group">
+                    <h3>Departure Time</h3>
+                    <div class="time-filters">
+                        <label><input type="checkbox" value="early"> Early Morning (12 AM - 6 AM)</label>
+                        <label><input type="checkbox" value="morning"> Morning (6 AM - 12 PM)</label>
+                        <label><input type="checkbox" value="afternoon"> Afternoon (12 PM - 6 PM)</label>
+                        <label><input type="checkbox" value="evening"> Evening (6 PM - 12 AM)</label>
+                    </div>
+                </div>
+                <div class="filter-group">
+                    <h3>Stops</h3>
+                    <div class="stop-filters">
+                        <label><input type="checkbox" value="nonstop"> Non-stop</label>
+                        <label><input type="checkbox" value="1stop"> 1 Stop</label>
+                        <label><input type="checkbox" value="2stops"> 2+ Stops</label>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="flight-results">
+            <div class="results-container">
+                <div class="results-header">
+                    <h2>Available Flights</h2>
+                    <div class="sort-options">
+                        <select id="sortBy">
+                            <option value="price-low">Price: Low to High</option>
+                            <option value="price-high">Price: High to Low</option>
+                            <option value="duration">Shortest Duration</option>
+                            <option value="departure">Earliest Departure</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="flight-grid">
+                    <div class="flight-card" data-price="5500" data-airline="indigo" data-departure="0830" data-duration="120" data-stops="nonstop" data-from="delhi" data-to="mumbai">
+                        <div class="airline-info">
+                            <img src="/css/images/airlines/indigo.png" alt="IndiGo" onerror="this.onerror=null; this.innerHTML=''; this.parentElement.innerHTML='<i class=\'fas fa-plane\'></i><span>IndiGo</span>';">
+                            <span>IndiGo</span>
+                        </div>
+                        <div class="flight-details">
+                            <div class="time-info">
+                                <div class="departure">
+                                    <h3>08:30</h3>
+                                    <p>Delhi (DEL)</p>
+                                </div>
+                                <div class="duration">
+                                    <span>2h 00m</span>
+                                    <div class="flight-path">
+                                        <span class="line"></span>
+                                        <i class="fas fa-plane"></i>
+                                    </div>
+                                    <span>Non-stop</span>
+                                </div>
+                                <div class="arrival">
+                                    <h3>10:30</h3>
+                                    <p>Mumbai (BOM)</p>
+                                </div>
+                            </div>
+                            <div class="price-info">
+                                <span class="price">₹5,500</span>
+                                <button class="book-now-btn">Book Now</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="flight-card" data-price="4800" data-airline="spicejet" data-departure="1420" data-duration="150" data-stops="1stop" data-from="delhi" data-to="mumbai">
+                        <div class="airline-info">
+                            <img src="/css/images/airlines/spicejet.png" alt="SpiceJet" onerror="this.onerror=null; this.innerHTML=''; this.parentElement.innerHTML='<i class=\'fas fa-plane\'></i><span>SpiceJet</span>';">
+                            <span>SpiceJet</span>
+                        </div>
+                        <div class="flight-details">
+                            <div class="time-info">
+                                <div class="departure">
+                                    <h3>14:20</h3>
+                                    <p>Delhi (DEL)</p>
+                                </div>
+                                <div class="duration">
+                                    <span>2h 30m</span>
+                                    <div class="flight-path">
+                                        <span class="line"></span>
+                                        <i class="fas fa-plane"></i>
+                                    </div>
+                                    <span>1 Stop</span>
+                                </div>
+                                <div class="arrival">
+                                    <h3>16:50</h3>
+                                    <p>Mumbai (BOM)</p>
+                                </div>
+                            </div>
+                            <div class="price-info">
+                                <span class="price">₹4,800</span>
+                                <button class="book-now-btn">Book Now</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="flight-card" data-price="8500" data-airline="vistara" data-departure="0600" data-duration="135" data-stops="nonstop" data-from="delhi" data-to="mumbai">
+                        <div class="airline-info">
+                            <img src="/css/images/airlines/vistara.png" alt="Vistara" onerror="this.onerror=null; this.innerHTML=''; this.parentElement.innerHTML='<i class=\'fas fa-plane\'></i><span>Vistara</span>';">
+                            <span>Vistara</span>
+                        </div>
+                        <div class="flight-details">
+                            <div class="time-info">
+                                <div class="departure">
+                                    <h3>06:00</h3>
+                                    <p>Delhi (DEL)</p>
+                                </div>
+                                <div class="duration">
+                                    <span>2h 15m</span>
+                                    <div class="flight-path">
+                                        <span class="line"></span>
+                                        <i class="fas fa-plane"></i>
+                                    </div>
+                                    <span>Non-stop</span>
+                                </div>
+                                <div class="arrival">
+                                    <h3>08:15</h3>
+                                    <p>Mumbai (BOM)</p>
+                                </div>
+                            </div>
+                            <div class="price-info">
+                                <span class="price">₹8,500</span>
+                                <button class="book-now-btn">Book Now</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="flight-card" data-price="6200" data-airline="airindia" data-departure="1130" data-duration="165" data-stops="1stop" data-from="bangalore" data-to="delhi">
+                        <div class="airline-info">
+                            <img src="/css/images/airlines/airindia.png" alt="Air India" onerror="this.onerror=null; this.innerHTML=''; this.parentElement.innerHTML='<i class=\'fas fa-plane\'></i><span>Air India</span>';">
+                            <span>Air India</span>
+                        </div>
+                        <div class="flight-details">
+                            <div class="time-info">
+                                <div class="departure">
+                                    <h3>11:30</h3>
+                                    <p>Bangalore (BLR)</p>
+                                </div>
+                                <div class="duration">
+                                    <span>2h 45m</span>
+                                    <div class="flight-path">
+                                        <span class="line"></span>
+                                        <i class="fas fa-plane"></i>
+                                    </div>
+                                    <span>1 Stop (HYD)</span>
+                                </div>
+                                <div class="arrival">
+                                    <h3>14:15</h3>
+                                    <p>Delhi (DEL)</p>
+                                </div>
+                            </div>
+                            <div class="price-info">
+                                <span class="price">₹6,200</span>
+                                <button class="book-now-btn">Book Now</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="flight-card" data-price="7800" data-airline="vistara" data-departure="1645" data-duration="140" data-stops="nonstop" data-from="mumbai" data-to="chennai">
+                        <div class="airline-info">
+                            <img src="/css/images/airlines/vistara.png" alt="Vistara" onerror="this.onerror=null; this.innerHTML=''; this.parentElement.innerHTML='<i class=\'fas fa-plane\'></i><span>Vistara</span>';">
+                            <span>Vistara</span>
+                        </div>
+                        <div class="flight-details">
+                            <div class="time-info">
+                                <div class="departure">
+                                    <h3>16:45</h3>
+                                    <p>Mumbai (BOM)</p>
+                                </div>
+                                <div class="duration">
+                                    <span>2h 20m</span>
+                                    <div class="flight-path">
+                                        <span class="line"></span>
+                                        <i class="fas fa-plane"></i>
+                                    </div>
+                                    <span>Non-stop</span>
+                                </div>
+                                <div class="arrival">
+                                    <h3>19:05</h3>
+                                    <p>Chennai (MAA)</p>
+                                </div>
+                            </div>
+                            <div class="price-info">
+                                <span class="price">₹7,800</span>
+                                <button class="book-now-btn">Book Now</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="flight-card" data-price="9200" data-airline="indigo" data-departure="0515" data-duration="180" data-stops="1stop" data-from="kolkata" data-to="bangalore">
+                        <div class="airline-info">
+                            <img src="/css/images/airlines/indigo.png" alt="IndiGo" onerror="this.onerror=null; this.innerHTML=''; this.parentElement.innerHTML='<i class=\'fas fa-plane\'></i><span>IndiGo</span>';">
+                            <span>IndiGo</span>
+                        </div>
+                        <div class="flight-details">
+                            <div class="time-info">
+                                <div class="departure">
+                                    <h3>05:15</h3>
+                                    <p>Kolkata (CCU)</p>
+                                </div>
+                                <div class="duration">
+                                    <span>3h 00m</span>
+                                    <div class="flight-path">
+                                        <span class="line"></span>
+                                        <i class="fas fa-plane"></i>
+                                    </div>
+                                    <span>1 Stop (BOM)</span>
+                                </div>
+                                <div class="arrival">
+                                    <h3>08:15</h3>
+                                    <p>Bangalore (BLR)</p>
+                                </div>
+                            </div>
+                            <div class="price-info">
+                                <span class="price">₹9,200</span>
+                                <button class="book-now-btn">Book Now</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="flight-card" data-price="12500" data-airline="vistara" data-departure="2030" data-duration="195" data-stops="2stops" data-from="delhi" data-to="chennai">
+                        <div class="airline-info">
+                            <img src="/css/images/airlines/vistara.png" alt="Vistara" onerror="this.onerror=null; this.innerHTML=''; this.parentElement.innerHTML='<i class=\'fas fa-plane\'></i><span>Vistara</span>';">
+                            <span>Vistara</span>
+                        </div>
+                        <div class="flight-details">
+                            <div class="time-info">
+                                <div class="departure">
+                                    <h3>20:30</h3>
+                                    <p>Delhi (DEL)</p>
+                                </div>
+                                <div class="duration">
+                                    <span>3h 15m</span>
+                                    <div class="flight-path">
+                                        <span class="line"></span>
+                                        <i class="fas fa-plane"></i>
+                                    </div>
+                                    <span>2 Stops (BOM, BLR)</span>
+                                </div>
+                                <div class="arrival">
+                                    <h3>23:45</h3>
+                                    <p>Chennai (MAA)</p>
+                                </div>
+                            </div>
+                            <div class="price-info">
+                                <span class="price">₹12,500</span>
+                                <button class="book-now-btn">Book Now</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>About Yatra</h3>
+                <p>Your trusted partner for memorable travel experiences across India.</p>
+            </div>
+            <div class="footer-section">
+                <h3>Quick Links</h3>
+                <ul>
+                    <li><a href="/about">About Us</a></li>
+                    <li><a href="/terms">Terms & Conditions</a></li>
+                    <li><a href="/privacy">Privacy Policy</a></li>
+                    <li><a href="/faq">FAQs</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>Contact Us</h3>
+                <p>Email: info@yatra.com</p>
+                <p>Phone: +91 1234567890</p>
+            </div>
+            <div class="footer-section">
+                <h3>Follow Us</h3>
+                <div class="social-links">
+                    <a href="#"><i class="fab fa-facebook"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-linkedin"></i></a>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2024 Yatra. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="/js/nav.js"></script>
+    <script src="/js/flightbooking.js"></script>
+</body>
+</html> 

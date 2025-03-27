@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Services - Yatra</title>
+    <link rel="stylesheet" href="/css/home.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <header class="header">
+        <nav class="navbar">
+            <div class="logo">
+                <h1><i class="fas fa-map"></i> Yatra <i class="fas fa-plane"></i></h1> 
+            </div>
+            <ul class="nav-links">
+                <li><a href="/">Home</a></li>
+                <li><a href="/destinations">Destinations</a></li>
+                <li><a href="/packages">Packages</a></li>
+                <li><a href="/services" class="active">Services</a></li>
+                <li><a href="/contact">Contact</a></li>
+                <li id="authButtons">
+                    <a href="/login" class="login-btn">Login</a>
+                    <a href="/signup" class="signup-btn">Sign Up</a>
+                </li>
+                <li id="userProfile" style="display: none;">
+                    <div class="user-profile">
+                        <span id="userName">User</span>
+                        <button onclick="logout()" class="logout-btn">Logout</button>
+                    </div>
+                </li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section class="hero">
+            <div class="hero-content">
+                <video autoplay muted loop class="hero-video" style="
+                    position: absolute;
+                    top: 0;
+                    left: 0;
+                    width: 100%;
+                    height: 100%;
+                    object-fit: cover;
+                    z-index: 1;
+                    filter: brightness(0.7);
+                ">
+                    <source src="/css/videos/video2.mp4" type="video/mp4">
+                </video>
+                <div class="hero-video-overlay" style="
+                    position: absolute;
+                    top: 0;
+                    left: 0;
+                    width: 100%;
+                    height: 100%;
+                    background: linear-gradient(to bottom, rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.5));
+                    z-index: 2;
+                "></div>
+                <div style="
+                    position: relative;
+                    z-index: 3;
+                    text-align: center;
+                    color: white;
+                    width: 100%;
+                ">
+                    <h1>Travel Packages</h1>
+                    <p>Curated packages for unforgettable experiences</p>
+                    <form id="searchForm" class="search-box">
+                        <input type="text" id="searchInput" placeholder="Where do you want to go?" required>
+                        <button type="submit" class="search-btn">Search</button>
+                    </form>
+                </div>
+            </div>
+        </section>
+
+        <section class="services-grid">
+            <div class="service-cards">
+                <div class="service-card">
+                    <i class="fas fa-hotel"></i>
+                    <h3>Hotel Booking</h3>
+                    <p>Find and book accommodations from luxury hotels to budget stays</p>
+                    <ul class="service-features">
+                        <li>Best price guarantee</li>
+                        <li>24/7 customer support</li>
+                        <li>Free cancellation options</li>
+                        <li>Verified reviews</li>
+                    </ul>
+                    <a href="/Hotel-Booking" style="text-decoration: none; color: rgb(21, 20, 20);">
+                    <button class="explore-btn">Book Hotels</button>
+                    </a>
+                </div>
+
+                <div class="service-card">
+                    <i class="fas fa-plane"></i>
+                    <h3>Flight Booking</h3>
+                    <p>Domestic and international flights at competitive prices</p>
+                    <ul class="service-features">
+                        <li>Price alerts</li>
+                        <li>Flexible booking options</li>
+                        <li>Multi-city flights</li>
+                        <li>Group booking available</li>
+                    </ul>
+                    <a href="/Flight-Booking" style="text-decoration: none; color: rgb(21, 20, 20);">
+                    <button class="explore-btn">Book Flights</button>
+                    </a>
+                </div>
+
+                <div class="service-card">
+                    <i class="fas fa-car"></i>
+                    <h3>Car Rental</h3>
+                    <p>Wide range of vehicles for all your transportation needs</p>
+                    <ul class="service-features">
+                        <li>Self-drive options</li>
+                        <li>Chauffeur services</li>
+                        <li>Airport transfers</li>
+                        <li>Intercity travel</li>
+                    </ul>
+                    <a href="/Car-Rentel" style="text-decoration: none; color: rgb(21, 20, 20);">
+                    <button class="explore-btn">Rent a Car</button>
+                    </a>
+                </div>
+
+                <div class="service-card">
+                    <i class="fas fa-map"></i>
+                    <h3>Tour Packages</h3>
+                    <p>Curated travel packages for every type of traveler</p>
+                    <ul class="service-features">
+                        <li>Customizable itineraries</li>
+                        <li>Group discounts</li>
+                        <li>Expert tour guides</li>
+                        <li>All-inclusive options</li>
+                    </ul>
+                    <a href="/Tour-Packages" style="text-decoration: none; color: rgb(21, 20, 20);">
+                    <button class="explore-btn">View Packages</button>
+                    </a>
+                </div>
+
+                <div class="service-card">
+                    <i class="fas fa-passport"></i>
+                    <h3>Visa Services</h3>
+                    <p>Hassle-free visa processing for international travel</p>
+                    <ul class="service-features">
+                        <li>Document assistance</li>
+                        <li>Visa application help</li>
+                        <li>Status tracking</li>
+                        <li>Expert consultation</li>
+                    </ul>
+                    <button class="explore-btn" onclick="showVisaInfo()">Learn More</button>
+                </div>
+
+                <div class="service-card">
+                    <i class="fas fa-umbrella-beach"></i>
+                    <h3>Activities & Experiences</h3>
+                    <p>Book local experiences and activities at your destination</p>
+                    <ul class="service-features">
+                        <li>Local guides</li>
+                        <li>Skip-the-line tickets</li>
+                        <li>Adventure sports</li>
+                        <li>Cultural experiences</li>
+                    </ul>
+                    <!-- <a href="/activities" style="text-decoration: none; color: rgb(21, 20, 20);">
+                        <button class="explore-btn">Browse Activities</button>
+                    </a> -->
+                </div>
+            </div>
+        </section>
+
+        <section class="why-choose-us">
+            <h2>Why Choose Our Services?</h2>
+            <div class="features-grid">
+                <div class="feature">
+                    <i class="fas fa-check-circle"></i>
+                    <h3>Best Price Guarantee</h3>
+                    <p>We offer competitive prices and match any lower price you find</p>
+                </div>
+                <div class="feature">
+                    <i class="fas fa-headset"></i>
+                    <h3>24/7 Support</h3>
+                    <p>Our team is always available to help you with any queries</p>
+                </div>
+                <div class="feature">
+                    <i class="fas fa-shield-alt"></i>
+                    <h3>Secure Booking</h3>
+                    <p>Your payments and personal information are always protected</p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>About Yatra</h3>
+                <p>Your trusted partner for memorable travel experiences across India.</p>
+            </div>
+            <div class="footer-section">
+                <h3>Quick Links</h3>
+                <ul>
+                    <li><a href="/about">About Us</a></li>
+                    <li><a href="/terms">Terms & Conditions</a></li>
+                    <li><a href="/privacy">Privacy Policy</a></li>
+                    <li><a href="/faq">FAQs</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>Contact Us</h3>
+                <p>Email: info@yatra.com</p>
+                <p>Phone: +91 1234567890</p>
+            </div>
+            <div class="footer-section">
+                <h3>Follow Us</h3>
+                <div class="social-links">
+                    <a href="#"><i class="fab fa-facebook"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-linkedin"></i></a>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2024 Yatra. All rights reserved.</p>
+        </div>
+    </footer>
+    <script src="/js/nav.js"></script>
+
+    <div id="visaModal" class="modal" style="display: none; position: fixed; z-index: 1000; left: 0; top: 0; width: 100%; height: 100%; overflow: auto; background-color: rgba(0,0,0,0.4);">
+        <div class="modal-content" style="background-color: #fefefe; margin: 15% auto; padding: 20px; border: 1px solid #888; width: 80%; max-width: 700px; border-radius: 8px;">
+            <span class="close" style="color: #aaa; float: right; font-size: 28px; font-weight: bold; cursor: pointer;">&times;</span>
+            <h2>Visa Information</h2>
+            <div id="visaContent" style="margin-top: 20px;">
+                <h3>Travel Visa</h3>
+                <p>A visa is a conditional authorization granted by a territory to a foreigner, allowing them to enter, remain within, or leave that territory. Visas typically include limits on the duration of the foreigner's stay, areas within the country they may enter, the dates they may enter, the number of permitted visits, or if the individual can work in the country in question.</p>
+                
+                <h4>Types of Visas:</h4>
+                <ul>
+                    <li>Tourist Visa</li>
+                    <li>Business Visa</li>
+                    <li>Student Visa</li>
+                    <li>Work Visa</li>
+                    <li>Transit Visa</li>
+                </ul>
+
+                <h4>Our Services Include:</h4>
+                <ul>
+                    <li>Visa application assistance</li>
+                    <li>Document verification</li>
+                    <li>Application tracking</li>
+                    <li>Expert consultation</li>
+                    <li>Embassy appointment booking</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <script>
+    function showVisaInfo() {
+        const modal = document.getElementById("visaModal");
+        const span = document.getElementsByClassName("close")[0];
+        
+        modal.style.display = "block";
+        
+        span.onclick = function() {
+            modal.style.display = "none";
+        }
+        
+        window.onclick = function(event) {
+            if (event.target == modal) {
+                modal.style.display = "none";
+            }
+        }
+    }
+    </script>
+</body>
+</html>

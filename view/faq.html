@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FAQs - Yatra</title>
+    <link rel="stylesheet" href="/css/home.css">
+    <link rel="stylesheet" href="/css/faq.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <header class="header">
+        <nav class="navbar">
+            <div class="logo">
+                <h1><i class="fas fa-map"></i> Yatra <i class="fas fa-plane"></i></h1>
+            </div>
+            <ul class="nav-links">
+                <li><a href="/">Home</a></li>
+                <li><a href="/destinations">Destinations</a></li>
+                <li><a href="/packages">Packages</a></li>
+                <li><a href="/services">Services</a></li>
+                <li><a href="/contact">Contact</a></li>
+                <li id="authButtons">
+                    <a href="/login" class="login-btn">Login</a>
+                    <a href="/signup" class="signup-btn">Sign Up</a>
+                </li>
+                <li id="userProfile" style="display: none;">
+                    <div class="user-profile">
+                        <span id="userName">User</span>
+                        <button onclick="logout()" class="logout-btn">Logout</button>
+                    </div>
+                </li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section class="hero">
+            <div class="hero-content">
+                <div class="hero-text">
+                    <h1>Frequently Asked Questions</h1>
+                    <p>Find answers to common questions about our services</p>
+                </div>
+                <div class="search-container">
+                    <input type="text" id="faqSearch" placeholder="Search your question here...">
+                    <button type="button"><i class="fas fa-search"></i></button>
+                </div>
+            </div>
+        </section>
+
+        <section class="faq-section">
+            <div class="faq-container">
+                <div class="faq-categories">
+                    <button class="category-btn active" data-category="all">All Questions</button>
+                    <button class="category-btn" data-category="bookings">Bookings</button>
+                    <button class="category-btn" data-category="payments">Payments</button>
+                    <button class="category-btn" data-category="cancellations">Cancellations</button>
+                    <button class="category-btn" data-category="services">Services</button>
+                </div>
+
+                <div class="faq-content">
+                    <div class="faq-item" data-category="bookings">
+                        <div class="faq-question">
+                            <h3>How do I make a booking?</h3>
+                            <span class="toggle-icon"><i class="fas fa-plus"></i></span>
+                        </div>
+                        <div class="faq-answer">
+                            <p>You can make a booking through our website by:</p>
+                            <ul>
+                                <li>Selecting your desired service (flights, hotels, packages)</li>
+                                <li>Choosing your preferences and dates</li>
+                                <li>Following the simple booking process</li>
+                                <li>Creating an account or logging in to complete the booking</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="faq-item" data-category="payments">
+                        <div class="faq-question">
+                            <h3>What payment methods do you accept?</h3>
+                            <span class="toggle-icon"><i class="fas fa-plus"></i></span>
+                        </div>
+                        <div class="faq-answer">
+                            <p>We accept various secure payment methods including:</p>
+                            <ul>
+                                <li>Credit/Debit Cards</li>
+                                <li>Net Banking</li>
+                                <li>UPI</li>
+                                <li>Popular Digital Wallets</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="faq-item" data-category="cancellations">
+                        <div class="faq-question">
+                            <h3>What is your cancellation policy?</h3>
+                            <span class="toggle-icon"><i class="fas fa-plus"></i></span>
+                        </div>
+                        <div class="faq-answer">
+                            <p>Cancellation policies vary depending on the service and provider. Generally, cancellations made 48 hours before the service date are eligible for a full refund. Please check specific terms during booking.</p>
+                        </div>
+                    </div>
+
+                    <div class="faq-item" data-category="services">
+                        <div class="faq-question">
+                            <h3>How can I modify my booking?</h3>
+                            <span class="toggle-icon"><i class="fas fa-plus"></i></span>
+                        </div>
+                        <div class="faq-answer">
+                            <p>You can modify your booking through your account dashboard or by contacting our customer support. Modifications may be subject to availability and additional charges.</p>
+                        </div>
+                    </div>
+
+                    <div class="faq-item" data-category="services">
+                        <div class="faq-question">
+                            <h3>Do you offer travel insurance?</h3>
+                            <span class="toggle-icon"><i class="fas fa-plus"></i></span>
+                        </div>
+                        <div class="faq-answer">
+                            <p>Yes, we offer travel insurance options during the booking process. We recommend getting travel insurance to protect against unforeseen circumstances.</p>
+                        </div>
+                    </div>
+
+                    <div class="faq-item" data-category="services">
+                        <div class="faq-question">
+                            <h3>How can I contact customer support?</h3>
+                            <span class="toggle-icon"><i class="fas fa-plus"></i></span>
+                        </div>
+                        <div class="faq-answer">
+                            <p>Our customer support is available 24/7 through multiple channels: phone, email, and live chat. You can also visit our contact page for more information.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="still-have-questions">
+                    <div class="question-card">
+                        <i class="fas fa-comments"></i>
+                        <h2>Still Have Questions?</h2>
+                        <p>Our support team is here to help you 24/7</p>
+                        <a href="/contact" class="contact-btn">Contact Support</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>About Yatra</h3>
+                <p>Your trusted partner for memorable travel experiences across India.</p>
+            </div>
+            <div class="footer-section">
+                <h3>Quick Links</h3>
+                <ul>
+                    <li><a href="/about">About Us</a></li>
+                    <li><a href="/terms">Terms & Conditions</a></li>
+                    <li><a href="/privacy">Privacy Policy</a></li>
+                    <li><a href="/faq">FAQs</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>Contact Us</h3>
+                <p>Email: info@yatra.com</p>
+                <p>Phone: +91 1234567890</p>
+            </div>
+            <div class="footer-section">
+                <h3>Follow Us</h3>
+                <div class="social-links">
+                    <a href="#"><i class="fab fa-facebook"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-linkedin"></i></a>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2024 Yatra. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="/js/nav.js"></script>
+    <script src="/js/faq.js"></script>
+</body>
+</html> 

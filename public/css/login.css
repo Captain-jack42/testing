@@ -1,0 +1,240 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Poppins', sans-serif;
+}
+
+body {
+  background: linear-gradient(135deg, #667eea 0%, #39383b 100%);
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.container {
+  width: 100%;
+  padding: 20px;
+}
+
+.form-box {
+  background: rgba(255, 255, 255, 0.98);
+  border-radius: 20px;
+  padding: 40px;
+  max-width: 460px;
+  margin: 0 auto;
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+}
+
+.form-header {
+  text-align: center;
+  margin-bottom: 40px;
+}
+
+.form-header i {
+  font-size: 60px;
+  color: #764ba2;
+  margin-bottom: 15px;
+}
+
+.form-header h1 {
+  color: #333;
+  font-size: 28px;
+  font-weight: 600;
+  margin-bottom: 5px;
+}
+
+.form-header p {
+  color: #666;
+  font-size: 15px;
+}
+
+.form-group {
+  margin-bottom: 20px;
+}
+
+.input-group {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.input-group i {
+  position: absolute;
+  left: 15px;
+  color: #764ba2;
+  font-size: 18px;
+}
+
+.input-group input {
+  width: 100%;
+  padding: 15px 15px 15px 45px;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  font-size: 15px;
+  transition: all 0.3s ease;
+}
+
+.input-group input:focus {
+  border-color: #764ba2;
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(118, 75, 162, 0.1);
+}
+
+.remember-forgot {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 25px;
+}
+
+.remember-me {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: #666;
+  font-size: 14px;
+}
+
+.forgot-password {
+  color: #764ba2;
+  text-decoration: none;
+  font-size: 14px;
+  transition: color 0.3s ease;
+}
+
+.forgot-password:hover {
+  color: #667eea;
+}
+
+.signin-btn {
+  width: 100%;
+  padding: 15px;
+  background: #764ba2;
+  color: white;
+  border: none;
+  border-radius: 10px;
+  font-size: 16px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.signin-btn:hover {
+  background: #667eea;
+}
+
+.divider {
+  text-align: center;
+  margin: 25px 0;
+  position: relative;
+}
+
+.divider::before,
+.divider::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  width: 45%;
+  height: 1px;
+  background: #ddd;
+}
+
+.divider::before {
+  left: 0;
+}
+
+.divider::after {
+  right: 0;
+}
+
+.divider span {
+  background: white;
+  padding: 0 15px;
+  color: #666;
+  font-size: 14px;
+}
+
+.social-signin {
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+  margin-bottom: 25px;
+}
+
+.social-btn {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  border: 1px solid #ddd;
+  background: white;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.social-btn i {
+  font-size: 20px;
+}
+
+.social-btn.google i {
+  color: #DB4437;
+}
+
+.social-btn.facebook i {
+  color: #4267B2;
+}
+
+.social-btn.apple i {
+  color: #000;
+}
+
+.social-btn:hover {
+  background: #f8f8f8;
+  transform: translateY(-2px);
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+.signup-link {
+  text-align: center;
+  color: #666;
+  font-size: 14px;
+}
+
+.signup-link a {
+  color: #764ba2;
+  text-decoration: none;
+  font-weight: 500;
+  transition: color 0.3s ease;
+}
+
+.signup-link a:hover {
+  color: #667eea;
+}
+
+/* Responsive Design */
+@media (max-width: 480px) {
+  .form-box {
+    padding: 30px 20px;
+  }
+
+  .form-header i {
+    font-size: 50px;
+  }
+
+  .form-header h1 {
+    font-size: 24px;
+  }
+
+  .social-signin {
+    gap: 10px;
+  }
+
+  .social-btn {
+    width: 45px;
+    height: 45px;
+  }
+} 

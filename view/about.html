@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Us - Yatra</title>
+    <link rel="stylesheet" href="/css/home.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <header class="header">
+        <nav class="navbar">
+            <div class="logo">
+                <h1><i class="fas fa-map"></i> Yatra <i class="fas fa-plane"></i></h1>
+            </div>
+            <ul class="nav-links">
+                <li><a href="/">Home</a></li>
+                <li><a href="/destinations">Destinations</a></li>
+                <li><a href="/packages">Packages</a></li>
+                <li><a href="/services">Services</a></li>
+                <li><a href="/contact">Contact</a></li>
+                <li id="authButtons">
+                    <a href="/login" class="login-btn">Login</a>
+                    <a href="/signup" class="signup-btn">Sign Up</a>
+                </li>
+                <li id="userProfile" style="display: none;">
+                    <div class="user-profile">
+                        <span id="userName">User</span>
+                        <button onclick="logout()" class="logout-btn">Logout</button>
+                    </div>
+                </li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section class="hero" style="height: 40vh;">
+            <div class="hero-content">
+                <h1>About Us</h1>
+                <p>Your Trusted Travel Partner Since 2024</p>
+            </div>
+        </section>
+
+        <section class="about-section">
+            <div class="about-container">
+                <div class="about-content">
+                    <h2>Our Story</h2>
+                    <p>Founded in 2024, Yatra has grown from a small travel agency to one of India's leading travel platforms. Our journey began with a simple mission: to make travel accessible, enjoyable, and memorable for everyone.</p>
+                    
+                    <h2>Our Mission</h2>
+                    <p>To provide exceptional travel experiences through personalized service, innovative solutions, and a commitment to customer satisfaction.</p>
+                    
+                    <h2>Our Vision</h2>
+                    <p>To become India's most trusted travel partner, setting new standards in the travel industry through technology, service excellence, and sustainable tourism practices.</p>
+                </div>
+
+                <div class="achievements">
+                    <div class="achievement-card">
+                        <i class="fas fa-users"></i>
+                        <h3>1M+</h3>
+                        <p>Happy Travelers</p>
+                    </div>
+                    <div class="achievement-card">
+                        <i class="fas fa-globe-asia"></i>
+                        <h3>100+</h3>
+                        <p>Destinations</p>
+                    </div>
+                    <div class="achievement-card">
+                        <i class="fas fa-handshake"></i>
+                        <h3>500+</h3>
+                        <p>Travel Partners</p>
+                    </div>
+                    <div class="achievement-card">
+                        <i class="fas fa-award"></i>
+                        <h3>50+</h3>
+                        <p>Awards Won</p>
+                    </div>
+                </div>
+
+                <div class="team-section">
+                    <h2>Our Leadership Team</h2>
+                    <div class="team-grid">
+                        <div class="team-member">
+                            <img src="https://source.unsplash.com/150x150/?professional" alt="CEO">
+                            <h3>John Doe</h3>
+                            <p>CEO & Founder</p>
+                        </div>
+                        <div class="team-member">
+                            <img src="https://source.unsplash.com/150x150/?business" alt="COO">
+                            <h3>Jane Smith</h3>
+                            <p>Chief Operations Officer</p>
+                        </div>
+                        <div class="team-member">
+                            <img src="https://source.unsplash.com/150x150/?executive" alt="CTO">
+                            <h3>Mike Johnson</h3>
+                            <p>Chief Technology Officer</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>About Yatra</h3>
+                <p>Your trusted partner for memorable travel experiences across India.</p>
+            </div>
+            <div class="footer-section">
+                <h3>Quick Links</h3>
+                <ul>
+                    <li><a href="/about">About Us</a></li>
+                    <li><a href="/terms">Terms & Conditions</a></li>
+                    <li><a href="/privacy">Privacy Policy</a></li>
+                    <li><a href="/faq">FAQs</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>Contact Us</h3>
+                <p>Email: info@yatra.com</p>
+                <p>Phone: +91 1234567890</p>
+            </div>
+            <div class="footer-section">
+                <h3>Follow Us</h3>
+                <div class="social-links">
+                    <a href="#"><i class="fab fa-facebook"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-linkedin"></i></a>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2024 Yatra. All rights reserved.</p>
+        </div>
+    </footer>
+    <script src="/js/nav.js"></script>
+</body>
+</html> 

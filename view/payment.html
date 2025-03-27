@@ -1,0 +1,396 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Payment - Yatra</title>
+    <link rel="stylesheet" href="/css/home.css">
+    <link rel="stylesheet" href="/css/payment.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <header class="header">
+        <nav class="navbar">
+            <div class="logo">
+                <h1>Yatra</h1>
+            </div>
+            <ul class="nav-links">
+                <li><a href="/">Home</a></li>
+                <li><a href="/destinations">Destinations</a></li>
+                <li><a href="/packages">Packages</a></li>
+                <li><a href="/services">Services</a></li>
+                <li><a href="/contact">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main class="payment-page">
+        <div class="payment-container">
+            <div class="booking-summary">
+                <h2>Booking Summary</h2>
+                <div class="summary-details">
+                    <div class="summary-item">
+                        <span>Package/Service:</span>
+                        <span id="bookingTitle">Golden Triangle Tour</span>
+                    </div>
+                    <div class="summary-item">
+                        <span>Duration:</span>
+                        <span id="bookingDuration">5 Days / 4 Nights</span>
+                    </div>
+                    <div class="summary-item">
+                        <span>Travelers:</span>
+                        <span id="travelerCount">
+                            <select id="travelerSelect">
+                                <option value="1">1 Adult</option>
+                                <option value="2">2 Adults</option>
+                                <option value="3">3 Adults</option>
+                                <option value="4">4 Adults</option>
+                                <option value="6">Family Pack (6 People)</option>
+                            </select>
+                        </span>
+                    </div>
+                    <div class="summary-item">
+                        <span>Date:</span>
+                        <span id="travelDate">
+                            <input type="date" id="startDate" min="" required>
+                            to
+                            <input type="date" id="endDate" min="" required>
+                        </span>
+                    </div>
+                    <div class="summary-item">
+                        <span>Email:</span>
+                        <span>
+                            <input type="email" id="bookingEmail" placeholder="Enter your email" required>
+                        </span>
+                    </div>
+                    <div class="price-breakdown">
+                        <div class="price-item">
+                            <span>Base Price:</span>
+                            <span>₹25,000</span>
+                        </div>
+                        <div class="price-item">
+                            <span>Taxes & Fees:</span>
+                            <span>₹2,500</span>
+                        </div>
+                        <div class="price-item total">
+                            <span>Total Amount:</span>
+                            <span>₹27,500</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="payment-methods">
+                <h2>Select Payment Method</h2>
+                <div class="payment-options">
+                    <div class="payment-tab active" data-method="card">
+                        <i class="fas fa-credit-card"></i>
+                        Credit/Debit Card
+                    </div>
+                    <div class="payment-tab" data-method="upi">
+                        <i class="fas fa-mobile-alt"></i>
+                        UPI Payment
+                    </div>
+                    <div class="payment-tab" data-method="netbanking">
+                        <i class="fas fa-university"></i>
+                        Net Banking
+                    </div>
+                    <div class="payment-tab" data-method="wallet">
+                        <i class="fas fa-wallet"></i>
+                        Digital Wallet
+                    </div>
+                </div>
+
+                <!-- Card Payment Form -->
+                <div class="payment-form" id="cardPayment">
+                    <div class="form-group">
+                        <label>Card Number</label>
+                        <div class="input-group">
+                            <input type="text" placeholder="1234 5678 9012 3456" maxlength="19" id="cardNumber">
+                            <div class="card-icons">
+                                <i class="fab fa-cc-visa"></i>
+                                <i class="fab fa-cc-mastercard"></i>
+                                <i class="fab fa-cc-amex"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label>Expiry Date</label>
+                            <input type="text" placeholder="MM/YY" maxlength="5" id="expiryDate">
+                        </div>
+                        <div class="form-group">
+                            <label>CVV</label>
+                            <input type="password" placeholder="***" maxlength="4" id="cvv">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label>Card Holder Name</label>
+                        <input type="text" placeholder="Name on card">
+                    </div>
+                </div>
+
+                <!-- UPI Payment Form -->
+                <div class="payment-form" id="upiPayment" style="display: none;">
+                    <div class="form-group">
+                        <label>UPI ID</label>
+                        <input type="text" placeholder="username@upi">
+                    </div>
+                    <div class="upi-apps">
+                        <button class="upi-app-btn">
+                            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/e1/UPI-Logo-vector.svg/200px-UPI-Logo-vector.svg.png" alt="GPay">
+                            Google Pay
+                        </button>
+                        <button class="upi-app-btn">
+                            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/24/Paytm_Logo_%282019%29.svg/200px-Paytm_Logo_%282019%29.svg.png" alt="Paytm">
+                            Paytm
+                        </button>
+                        <button class="upi-app-btn">
+                            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/71/PhonePe_Logo.svg/200px-PhonePe_Logo.svg.png" alt="PhonePe">
+                            PhonePe
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Net Banking Form -->
+                <div class="payment-form" id="netbankingPayment" style="display: none;">
+                    <div class="form-group">
+                        <label>Select Bank</label>
+                        <select>
+                            <option value="">Choose your bank</option>
+                            <option value="sbi">State Bank of India</option>
+                            <option value="hdfc">HDFC Bank</option>
+                            <option value="icici">ICICI Bank</option>
+                            <option value="axis">Axis Bank</option>
+                            <option value="kotak">Kotak Mahindra Bank</option>
+                        </select>
+                    </div>
+                </div>
+
+                <!-- Digital Wallet Form -->
+                <div class="payment-form" id="walletPayment" style="display: none;">
+                    <div class="wallet-options">
+                        <button class="wallet-option">
+                            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/24/Paytm_Logo_%282019%29.svg/200px-Paytm_Logo_%282019%29.svg.png" alt="Paytm">
+                            Paytm
+                        </button>
+                        <button class="wallet-option">
+                            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/e1/UPI-Logo-vector.svg/200px-UPI-Logo-vector.svg.png" alt="Amazon Pay">
+                            Amazon Pay
+                        </button>
+                        <button class="wallet-option">
+                            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/71/PhonePe_Logo.svg/200px-PhonePe_Logo.svg.png" alt="PhonePe">
+                            PhonePe Wallet
+                        </button>
+                    </div>
+                </div>
+
+                <div class="payment-actions">
+                    <button class="pay-now-btn" id="payNowBtn">
+                        <span>Pay Now</span>
+                        <span class="amount">₹27,500</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>Secure Payment</h3>
+                <p>Your payment is protected by industry-standard encryption.</p>
+                <div class="security-badges">
+                    <i class="fas fa-lock"></i>
+                    <i class="fab fa-cc-visa"></i>
+                    <i class="fab fa-cc-mastercard"></i>
+                    <i class="fab fa-cc-amex"></i>
+                </div>
+            </div>
+            <div class="footer-section">
+                <h3>Need Help?</h3>
+                <p>Contact our support team</p>
+                <p>Email: support@yatra.com</p>
+                <p>Phone: +91 1234567890</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Loading Overlay -->
+    <div class="loading-overlay" id="loadingOverlay" style="display: none;">
+        <div class="loading-spinner">
+            <i class="fas fa-spinner fa-spin"></i>
+            <p>Processing your payment...</p>
+        </div>
+    </div>
+
+    <script>
+        // Load package details from sessionStorage
+        let basePrice = 0;
+        let taxRate = 0.10; // 10% tax
+        
+        window.addEventListener('DOMContentLoaded', () => {
+            const selectedPackage = JSON.parse(sessionStorage.getItem('selectedPackage'));
+            if (selectedPackage) {
+                // Update booking summary
+                document.getElementById('bookingTitle').textContent = selectedPackage.service;
+                document.getElementById('bookingDuration').textContent = selectedPackage.duration;
+                
+                // Set initial base price
+                basePrice = parseInt(selectedPackage.amount);
+                updatePriceBreakdown(1); // Initial calculation for 1 traveler
+                
+                // Set minimum date as today for date inputs
+                const today = new Date().toISOString().split('T')[0];
+                document.getElementById('startDate').min = today;
+                document.getElementById('endDate').min = today;
+                
+                // Add event listener for date changes
+                document.getElementById('startDate').addEventListener('change', function() {
+                    document.getElementById('endDate').min = this.value;
+                });
+
+                // Add email validation
+                const emailInput = document.getElementById('bookingEmail');
+                emailInput.addEventListener('input', function() {
+                    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+                    if (!emailRegex.test(this.value)) {
+                        this.setCustomValidity('Please enter a valid email address');
+                    } else {
+                        this.setCustomValidity('');
+                    }
+                });
+            } else {
+                // Redirect back to packages page if no package is selected
+                window.location.href = '/packages';
+            }
+        });
+
+        // Function to update price breakdown based on number of travelers
+        function updatePriceBreakdown(travelers) {
+            const totalBasePrice = basePrice * travelers;
+            const taxAmount = Math.round(totalBasePrice * taxRate);
+            const totalAmount = totalBasePrice + taxAmount;
+
+            // Update price breakdown display
+            document.querySelector('.price-breakdown .price-item:nth-child(1) span:last-child').textContent = `₹${totalBasePrice.toLocaleString()}`;
+            document.querySelector('.price-breakdown .price-item:nth-child(2) span:last-child').textContent = `₹${taxAmount.toLocaleString()}`;
+            document.querySelector('.price-breakdown .total span:last-child').textContent = `₹${totalAmount.toLocaleString()}`;
+            
+            // Update pay now button amount
+            document.querySelector('.pay-now-btn .amount').textContent = `₹${totalAmount.toLocaleString()}`;
+        }
+
+        // Add event listener for traveler count changes
+        document.getElementById('travelerSelect').addEventListener('change', function() {
+            updatePriceBreakdown(parseInt(this.value));
+        });
+
+        // Payment method tabs
+        const paymentTabs = document.querySelectorAll('.payment-tab');
+        const paymentForms = document.querySelectorAll('.payment-form');
+
+        paymentTabs.forEach(tab => {
+            tab.addEventListener('click', () => {
+                // Remove active class from all tabs
+                paymentTabs.forEach(t => t.classList.remove('active'));
+                // Add active class to clicked tab
+                tab.classList.add('active');
+                
+                // Hide all payment forms
+                paymentForms.forEach(form => form.style.display = 'none');
+                // Show selected payment form
+                document.getElementById(tab.dataset.method + 'Payment').style.display = 'block';
+            });
+        });
+
+        // Card number formatting
+        const cardNumber = document.getElementById('cardNumber');
+        cardNumber.addEventListener('input', (e) => {
+            let value = e.target.value.replace(/\s/g, '');
+            if (value.length > 0) {
+                value = value.match(new RegExp('.{1,4}', 'g')).join(' ');
+            }
+            e.target.value = value;
+        });
+
+        // Expiry date formatting
+        const expiryDate = document.getElementById('expiryDate');
+        expiryDate.addEventListener('input', (e) => {
+            let value = e.target.value.replace(/\D/g, '');
+            if (value.length >= 2) {
+                value = value.slice(0, 2) + '/' + value.slice(2);
+            }
+            e.target.value = value;
+        });
+
+        // Payment processing simulation
+        const payNowBtn = document.getElementById('payNowBtn');
+        const loadingOverlay = document.getElementById('loadingOverlay');
+
+        payNowBtn.addEventListener('click', () => {
+            const selectedPackage = JSON.parse(sessionStorage.getItem('selectedPackage'));
+            const startDate = document.getElementById('startDate').value;
+            const endDate = document.getElementById('endDate').value;
+            const email = document.getElementById('bookingEmail').value;
+            
+            if (!startDate || !endDate) {
+                alert('Please select travel dates');
+                return;
+            }
+
+            if (!email) {
+                alert('Please enter your email address');
+                return;
+            }
+            
+            // Create the booking data
+            const bookingData = {
+                ...selectedPackage,
+                travelers: parseInt(document.getElementById('travelerSelect').value),
+                startDate: startDate,
+                endDate: endDate,
+                email: email,
+                paymentMethod: document.querySelector('.payment-tab.active').dataset.method,
+                bookingDate: new Date().toISOString()
+            };
+
+            // Show loading overlay
+            loadingOverlay.style.display = 'flex';
+
+            // Send booking data to server
+            fetch('/api/bookings', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(bookingData)
+            })
+            .then(response => {
+                if (!response.ok) {
+                    return response.json().then(data => {
+                        throw new Error(data.message || 'Payment failed');
+                    });
+                }
+                return response.json();
+            })
+            .then(data => {
+                loadingOverlay.style.display = 'none';
+                if (data.success) {
+                    // Clear the selected package from session storage
+                    sessionStorage.removeItem('selectedPackage');
+                    alert('Payment successful! Your booking is confirmed. Please check your email for details.');
+                    window.location.href = '/booking-confirmation';
+                } else {
+                    alert(data.message || 'Payment failed. Please try again.');
+                }
+            })
+            .catch(error => {
+                loadingOverlay.style.display = 'none';
+                console.error('Error:', error);
+                alert(error.message || 'An error occurred. Please try again.');
+            });
+        });
+    </script>
+</body>
+</html> 

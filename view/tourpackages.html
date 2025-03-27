@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tour Packages - Yatra</title>
+    <link rel="stylesheet" href="/css/home.css">
+    <link rel="stylesheet" href="/css/tourpackages.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <header class="header">
+        <nav class="navbar">
+            <div class="logo">
+                <h1><i class="fas fa-map"></i> Yatra <i class="fas fa-plane"></i></h1>
+            </div>
+            <ul class="nav-links">
+                <li><a href="/">Home</a></li>
+                <li><a href="/destinations">Destinations</a></li>
+                <li><a href="/packages">Packages</a></li>
+                <li><a href="/services">Services</a></li>
+                <li><a href="/contact">Contact</a></li>
+                <li id="authButtons">
+                    <a href="/login" class="login-btn">Login</a>
+                    <a href="/signup" class="signup-btn">Sign Up</a>
+                </li>
+                <li id="userProfile" style="display: none;">
+                    <div class="user-profile">
+                        <span id="userName">User</span>
+                        <button onclick="logout()" class="logout-btn">Logout</button>
+                    </div>
+                </li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section class="hero">
+            <div class="hero-content">
+                <h1>Explore Tour Packages</h1>
+                <p>Discover curated travel experiences across India</p>
+            </div>
+        </section>
+
+        <section class="search-section">
+            <div class="search-container">
+                <form id="packageSearchForm" class="search-form">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="destination"><i class="fas fa-map-marker-alt"></i> Destination</label>
+                            <input type="text" id="destination" name="destination" placeholder="Where do you want to go?" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="duration"><i class="fas fa-calendar-alt"></i> Duration</label>
+                            <select id="duration" name="duration" required>
+                                <option value="1-3">1-3 Days</option>
+                                <option value="4-7">4-7 Days</option>
+                                <option value="8-14">8-14 Days</option>
+                                <option value="15+">15+ Days</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="travelers"><i class="fas fa-users"></i> Travelers</label>
+                            <select id="travelers" name="travelers" required>
+                                <option value="1">1 Person</option>
+                                <option value="2">2 People</option>
+                                <option value="3">3 People</option>
+                                <option value="4">4 People</option>
+                                <option value="5+">5+ People</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="travelDate"><i class="fas fa-calendar-check"></i> Travel Date</label>
+                            <input type="date" id="travelDate" name="travelDate" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="packageType"><i class="fas fa-suitcase"></i> Package Type</label>
+                            <select id="packageType" name="packageType" required>
+                                <option value="all">All Types</option>
+                                <option value="adventure">Adventure</option>
+                                <option value="cultural">Cultural</option>
+                                <option value="luxury">Luxury</option>
+                                <option value="budget">Budget</option>
+                                <option value="honeymoon">Honeymoon</option>
+                                <option value="family">Family</option>
+                            </select>
+                        </div>
+                    </div>
+                    <button type="submit" class="search-btn">Search Packages</button>
+                </form>
+            </div>
+        </section>
+
+        <section class="filters-section">
+            <div class="filters-container">
+                <div class="filter-group">
+                    <h3>Price Range</h3>
+                    <div class="price-slider">
+                        <input type="range" min="0" max="100000" value="50000" id="priceRange">
+                        <div class="price-range-labels">
+                            <span>₹0</span>
+                            <span>₹50000</span>
+                            <span>₹100000+</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="filter-group">
+                    <h3>Package Features</h3>
+                    <div class="feature-filters">
+                        <label><input type="checkbox" value="hotel"> Hotel Stay</label>
+                        <label><input type="checkbox" value="flight"> Flights</label>
+                        <label><input type="checkbox" value="meals"> Meals</label>
+                        <label><input type="checkbox" value="transport"> Transport</label>
+                        <label><input type="checkbox" value="guide"> Tour Guide</label>
+                        <label><input type="checkbox" value="activities"> Activities</label>
+                    </div>
+                </div>
+                <div class="filter-group">
+                    <h3>Travel Style</h3>
+                    <div class="style-filters">
+                        <label><input type="checkbox" value="guided"> Guided Tours</label>
+                        <label><input type="checkbox" value="independent"> Independent Travel</label>
+                        <label><input type="checkbox" value="group"> Group Tours</label>
+                        <label><input type="checkbox" value="private"> Private Tours</label>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="package-results">
+            <div class="results-container">
+                <div class="results-header">
+                    <h2>Available Packages</h2>
+                    <div class="sort-options">
+                        <select id="sortBy">
+                            <option value="price-low">Price: Low to High</option>
+                            <option value="price-high">Price: High to Low</option>
+                            <option value="duration">Longest Duration</option>
+                            <option value="rating">Highest Rated</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="package-container">
+                    <div class="package-grid">
+                        <div class="package-card">
+                            <div class="package-image">
+                                <img src="https://images.pexels.com/photos/1267321/pexels-photo-1267321.jpeg" alt="Kerala Backwaters">
+                                <span class="package-duration">5 Days</span>
+                            </div>
+                            <div class="package-details">
+                                <h3>Kerala Backwaters Tour</h3>
+                                <div class="package-rating">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star-half-alt"></i>
+                                    <span>(4.5)</span>
+                                </div>
+                                <div class="package-features">
+                                    <span><i class="fas fa-hotel"></i> 4 Nights</span>
+                                    <span><i class="fas fa-utensils"></i> Meals</span>
+                                    <span><i class="fas fa-car"></i> Transport</span>
+                                </div>
+                                <div class="package-price">
+                                    <span class="price">₹32,999</span>
+                                    <span class="per-person">per person</span>
+                                </div>
+                                <button class="view-details-btn">View Details</button>
+                            </div>
+                        </div>
+                        <div class="package-card">
+                            <div class="package-image">
+                                <img src="https://images.pexels.com/photos/5087165/pexels-photo-5087165.jpeg" alt="Rajasthan Heritage Tour">
+                                <span class="package-duration">7 Days</span>
+                            </div>
+                           
+                            <div class="package-details">
+                                <h3>Rajasthan Heritage Tour</h3>
+                                <div class="package-rating">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <span>(5.0)</span>
+                                </div>
+                                <div class="package-features">
+                                    <span><i class="fas fa-hotel"></i> 6 Nights</span>
+                                    <span><i class="fas fa-utensils"></i> Meals</span>
+                                    <span><i class="fas fa-car"></i> Transport</span>
+                                </div>
+                                <div class="package-price">
+                                    <span class="price">₹35,999</span>
+                                    <span class="per-person">per person</span>
+                                </div>
+                                <button class="view-details-btn">View Details</button>
+                            </div>
+                        </div>
+                        <div class="package-card">
+                            <div class="package-image">
+                                <img src="https://images.pexels.com/photos/2686558/pexels-photo-2686558.jpeg" alt="Himalayan Adventure">
+                                <span class="package-duration">6 Days</span>
+                            </div>
+                            <div class="package-details">
+                                <h3>Himalayan Adventure</h3>
+                                <div class="package-rating">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="far fa-star"></i>
+                                    <span>(4.0)</span>
+                                </div>
+                                <div class="package-features">
+                                    <span><i class="fas fa-hotel"></i> 5 Nights</span>
+                                    <span><i class="fas fa-utensils"></i> Meals</span>
+                                    <span><i class="fas fa-car"></i> Transport</span>
+                                </div>
+                                <div class="package-price">
+                                    <span class="price">₹28,999</span>
+                                    <span class="per-person">per person</span>
+                                </div>
+                                <button class="view-details-btn">View Details</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>About Yatra</h3>
+                <p>Your trusted partner for memorable travel experiences across India.</p>
+            </div>
+            <div class="footer-section">
+                <h3>Quick Links</h3>
+                <ul>
+                    <li><a href="/about">About Us</a></li>
+                    <li><a href="/terms">Terms & Conditions</a></li>
+                    <li><a href="/privacy">Privacy Policy</a></li>
+                    <li><a href="/faq">FAQs</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>Contact Us</h3>
+                <p>Email: info@yatra.com</p>
+                <p>Phone: +91 1234567890</p>
+            </div>
+            <div class="footer-section">
+                <h3>Follow Us</h3>
+                <div class="social-links">
+                    <a href="#"><i class="fab fa-facebook"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-linkedin"></i></a>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2024 Yatra. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="/js/nav.js"></script>
+    <script src="/js/tourpackages.js"></script>
+</body>
+</html> 
